@@ -18,16 +18,18 @@
      Toggle styling ported 1:1 from atelier base.css
      ============================================================ */
   :root {
-    --bg: #000000;
-    --fg: #ECE6D5;
-    --fg-2: #D6CFBB;
-    --fg-3: #A89F88;
-    --accent: #AA9068;
-    --accent-fill: #AA9068;
-    --on-accent: #000000;
-    --rule-strong: #5C4E35;
-    --rule: #2A2419;
-    --rule-soft: #1C180F;
+    /* light = base (manual light, or system light) */
+    --bg: #F4EFE4;
+    --fg: #2A2620;
+    --fg-2: #4A4438;
+    --fg-3: #7A7363;
+    --accent: #8A6F3F;
+    --accent-fill: #8A6F3F;
+    --on-accent: #FFFFFF;
+    --rule-strong: #C9BFA3;
+    --rule: #DCD2BA;
+    --rule-soft: #EDE6D5;
+    --bar: rgba(244, 239, 228, 0.86);
     --radius: 0;
     --ease: cubic-bezier(0.4, 0, 0.2, 1);
 
@@ -36,6 +38,22 @@
     --font-mono: "IBM Plex Mono", ui-monospace, monospace;
     --font-cjk: "LXGW WenKai TC", "Manrope", system-ui, sans-serif;
   }
+  /* dark = system default (unless user forced light) */
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #000000; --fg: #ECE6D5; --fg-2: #D6CFBB; --fg-3: #A89F88;
+      --accent: #AA9068; --accent-fill: #AA9068; --on-accent: #000000;
+      --rule-strong: #5C4E35; --rule: #2A2419; --rule-soft: #1C180F;
+      --bar: rgba(0, 0, 0, 0.86);
+    }
+  }
+  /* dark = manually chosen */
+  :root[data-theme="dark"] {
+    --bg: #000000; --fg: #ECE6D5; --fg-2: #D6CFBB; --fg-3: #A89F88;
+    --accent: #AA9068; --accent-fill: #AA9068; --on-accent: #000000;
+    --rule-strong: #5C4E35; --rule: #2A2419; --rule-soft: #1C180F;
+    --bar: rgba(0, 0, 0, 0.86);
+  }
 
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   html { scroll-behavior: smooth; }
@@ -43,6 +61,7 @@
   body {
     background: var(--bg);
     color: var(--fg);
+    transition: background 0.25s var(--ease), color 0.25s var(--ease);
     font-family: var(--font-body);
     font-size: 17px;
     line-height: 1.7;
@@ -70,7 +89,7 @@
   /* ---------- top bar · language toggle ---------- */
   .topbar {
     position: sticky; top: 0; z-index: 20;
-    background: rgba(0, 0, 0, 0.86);
+    background: var(--bar);
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
     border-bottom: 1px solid var(--rule);
@@ -103,6 +122,15 @@
   .toggle button[aria-pressed="true"] {
     background: var(--accent-fill); color: var(--on-accent); border-color: var(--accent-fill);
   }
+  .topbar-right { display: flex; align-items: center; gap: 0.8rem; flex-wrap: wrap; }
+  .theme-btn {
+    font-family: "IBM Plex Mono", monospace; font-size: 14px; letter-spacing: 0.03em;
+    min-height: 44px; padding: 0 12px;
+    border: 1px solid var(--rule-strong); background: transparent; color: var(--fg-2);
+    cursor: pointer; border-radius: 0;
+    transition: all 0.16s var(--ease);
+  }
+  .theme-btn:hover { border-color: var(--accent); color: var(--fg); }
 
   /* ---------- hero ---------- */
   .hero { padding: clamp(3.6rem, 9vw, 6.4rem) 0 clamp(2.4rem, 5vw, 3.6rem); }
@@ -274,12 +302,15 @@
 <header class="topbar">
   <div class="topbar-inner">
     <span class="topbar-label">Living&nbsp;Checklist</span>
-    <div class="toggle" role="group" aria-label="Language / 语言">
-      <button type="button" data-lang="en" aria-pressed="true">EN</button>
-      <button type="button" data-lang="fr" aria-pressed="false">FR</button>
-      <button type="button" data-lang="zh-Hans" aria-pressed="false">简</button>
-      <button type="button" data-lang="zh-Hant" aria-pressed="false">繁</button>
-      <button type="button" data-lang="ja" aria-pressed="false">日</button>
+    <div class="topbar-right">
+      <div class="toggle" role="group" aria-label="Language / 语言">
+        <button type="button" data-lang="en" aria-pressed="true">EN</button>
+        <button type="button" data-lang="fr" aria-pressed="false">FR</button>
+        <button type="button" data-lang="zh-Hans" aria-pressed="false">简</button>
+        <button type="button" data-lang="zh-Hant" aria-pressed="false">繁</button>
+        <button type="button" data-lang="ja" aria-pressed="false">日</button>
+      </div>
+      <button type="button" id="themeBtn" class="theme-btn" aria-label="Theme: Auto / Light / Dark">◐ Auto</button>
     </div>
   </div>
 </header>
@@ -293,8 +324,8 @@
     <span class="hero-sub" data-i18n="sub">Step by step HTML</span>
     <p class="hero-lead" data-i18n="lead"></p>
     <div class="hero-actions">
-      <a class="btn btn--filled" href="https://github.com/MtsYama/living-checklist" data-i18n="ctaRepo">View on GitHub</a>
-      <a class="btn" href="examples/europe-japan-trip.html" data-i18n="ctaExample">See a live example</a>
+      <a class="btn btn--filled" href="examples/europe-japan-trip.html" data-i18n="ctaExample">Try a live example</a>
+      <a class="btn" href="https://github.com/MtsYama/living-checklist" data-i18n="ctaRepo">View on GitHub</a>
     </div>
   </section>
 
@@ -369,6 +400,15 @@
     </div>
   </section>
 
+  <!-- ROADMAP -->
+  <section class="section">
+    <div class="section-head">
+      <span class="section-no">05</span>
+      <h2 class="section-title" data-i18n="roadmapTitle"></h2>
+    </div>
+    <p class="section-lead" data-i18n="roadmapBody"></p>
+  </section>
+
 </main>
 
 <footer class="footer wrap">
@@ -392,9 +432,11 @@
       eyebrow: "Open source · single file · MIT",
       title: "Living Checklist",
       sub: "Step by step HTML",
-      lead: "A single HTML file that turns any step-by-step process into a living checklist that saves itself.",
+      lead: "Got something you do step by step (a move, a visa, a trip, a launch)? This turns it into a checklist you tick off. It remembers your progress on its own, and it's one file you just double-click to open.",
+      roadmapTitle: "Now, and what's next",
+      roadmapBody: "Right now the tool itself has no AI inside. You bring your own AI (ChatGPT, Claude, or just fill it by hand) to generate and edit a checklist, and the file makes it come alive: items sink, steps archive, progress saves. What's next: turning it into a standalone app that connects to Notion and other note tools, and stands alongside the classic Google and Microsoft checklist apps. For now it stays free and open source while the core gets solid.",
       ctaRepo: "View on GitHub",
-      ctaExample: "See a live example",
+      ctaExample: "Try a live example",
 
       whatTitle: "What it is",
       whatBody: "One self-contained .html file. Inline CSS, inline JS, zero dependencies. Double-click it and it opens straight from file:// — no build, no server, no internet. You edit the content, not the engine, and it comes alive.",
@@ -436,9 +478,11 @@
       eyebrow: "Open source · fichier unique · MIT",
       title: "Living Checklist",
       sub: "Step by step HTML",
-      lead: "Un seul fichier HTML qui transforme n'importe quel processus étape par étape en une checklist vivante qui se sauvegarde toute seule.",
+      lead: "Vous avez un truc à faire étape par étape (un déménagement, un visa, un voyage, un lancement) ? Ça le transforme en une checklist que vous cochez. Elle retient votre progression toute seule, et c'est un seul fichier qu'il suffit de double-cliquer pour ouvrir.",
+      roadmapTitle: "Aujourd'hui, et la suite",
+      roadmapBody: "Pour l'instant, l'outil lui-même n'a aucune IA à l'intérieur. Vous apportez votre propre IA (ChatGPT, Claude, ou vous remplissez à la main) pour générer et modifier une checklist, et le fichier la fait vivre : les éléments coulent, les étapes s'archivent, la progression se sauvegarde. La suite : en faire une application autonome qui se connecte à Notion et aux autres outils de notes, et qui se tient aux côtés des applis de checklist classiques de Google et Microsoft. Pour l'instant, ça reste gratuit et open source, le temps de bien solidifier le cœur.",
       ctaRepo: "Voir sur GitHub",
-      ctaExample: "Voir un exemple",
+      ctaExample: "Essayer un exemple",
 
       whatTitle: "Ce que c'est",
       whatBody: "Un fichier .html autonome. CSS intégré, JS intégré, zéro dépendance. Double-cliquez et il s'ouvre directement depuis file:// — aucun build, aucun serveur, aucune connexion. Vous modifiez le contenu, pas le moteur, et tout prend vie.",
@@ -480,9 +524,11 @@
       eyebrow: "开源 · 单文件 · MIT",
       title: "活页清单",
       sub: "Step by step HTML",
-      lead: "一个 HTML 文件，把任何 step-by-step 的流程，变成一份会自己保存进度的「活的」清单。",
+      lead: "有那种得一步步做的事（搬家、办签证、出去玩、上线新东西）?这个把它变成一份能打勾的清单，勾到哪它自己记着，关了再开还在。就一个文件，双击就开，不用装东西。",
+      roadmapTitle: "现在，和接下来",
+      roadmapBody: "现在这个工具本身不带 AI。你用自己的 AI（ChatGPT、Claude，或者干脆手动）来生成和修改清单，它负责把清单「活」起来:勾选沉底、整步归档、进度自存。接下来:把它做成一个能独立运行的 App，打通 Notion 等笔记工具，也对标 Google、微软那类传统 checklist 软件。现在先免费、开源，把核心打磨扎实。",
       ctaRepo: "在 GitHub 查看",
-      ctaExample: "看一个实例",
+      ctaExample: "点开试一个真实例子",
 
       whatTitle: "这是什么",
       whatBody: "一个自包含的 .html，CSS 和 JS 全内联，零依赖。双击就能从 file:// 直接打开 —— 不用构建、不用服务器、不用联网。你只改内容，不碰引擎，它就活了起来。",
@@ -524,9 +570,11 @@
       eyebrow: "開源 · 單檔案 · MIT",
       title: "活頁清單",
       sub: "Step by step HTML",
-      lead: "一個 HTML 檔案，把任何 step-by-step 的流程，變成一份會自己儲存進度的「活的」清單。",
+      lead: "有那種得一步步做的事（搬家、辦簽證、出去玩、上線新東西）?這個把它變成一份能打勾的清單，勾到哪它自己記著，關了再開還在。就一個檔案，雙擊就開，不用裝東西。",
+      roadmapTitle: "現在，和接下來",
+      roadmapBody: "現在這個工具本身不帶 AI。你用自己的 AI（ChatGPT、Claude，或者乾脆手動）來生成和修改清單，它負責把清單「活」起來:勾選沉底、整步歸檔、進度自存。接下來:把它做成一個能獨立執行的 App，打通 Notion 等筆記工具，也對標 Google、微軟那類傳統 checklist 軟體。現在先免費、開源，把核心打磨扎實。",
       ctaRepo: "在 GitHub 查看",
-      ctaExample: "看一個實例",
+      ctaExample: "點開試一個實例",
 
       whatTitle: "這是什麼",
       whatBody: "一個自包含的 .html，CSS 和 JS 全內聯，零依賴。雙擊就能從 file:// 直接打開 —— 不用建置、不用伺服器、不用連網。你只改內容，不碰引擎，它就活了起來。",
@@ -568,9 +616,11 @@
       eyebrow: "オープンソース · 単一ファイル · MIT",
       title: "活页清单",
       sub: "Step by step HTML",
-      lead: "あらゆる step-by-step なプロセスを、自分で進捗を保存し続ける「生きたチェックリスト」に変える、たった 1 つの HTML ファイル。",
+      lead: "一歩ずつ進めることはありませんか（引っ越し、ビザ、旅行、ローンチ）?これはそれをチェックして消していけるチェックリストに変えます。進捗は勝手に覚えてくれて、ダブルクリックで開くだけのファイル 1 つです。",
+      roadmapTitle: "いまと、これから",
+      roadmapBody: "いまのところ、ツール自体に AI は入っていません。あなた自身の AI（ChatGPT、Claude、または手入力でも）でチェックリストを生成・編集し、ファイルがそれを生きたものにします：項目が沈み、ステップが片付き、進捗が保存されます。これから：Notion など他のメモツールとつながる単体のアプリにして、Google や Microsoft の定番チェックリストアプリと並ぶものにしていきます。当面は無料・オープンソースのまま、核をしっかり固めていきます。",
       ctaRepo: "GitHub で見る",
-      ctaExample: "実例を見る",
+      ctaExample: "実例を試す",
 
       whatTitle: "これは何か",
       whatBody: "それ自体で完結した 1 つの .html。CSS も JS もインライン、依存ゼロ。ダブルクリックすれば file:// から直接開きます —— ビルドなし、サーバーなし、インターネットも不要。編集するのはコンテンツだけ、エンジンには触れず、それは命を持ちます。",
@@ -674,6 +724,28 @@
     if (nav.indexOf("fr") === 0) return "fr";
     return "en";
   }
+
+  // ---- theme: auto (follow system) / light / dark ----
+  (function () {
+    var KEY = "lc-landing-theme", root = document.documentElement;
+    var btn = document.getElementById("themeBtn");
+    var modes = ["auto", "light", "dark"];
+    var label = { auto: "◐ Auto", light: "☀ Light", dark: "🌙 Dark" };
+    function apply(m) {
+      if (modes.indexOf(m) < 0) m = "auto";
+      if (m === "auto") root.removeAttribute("data-theme");
+      else root.setAttribute("data-theme", m);
+      if (btn) { btn.textContent = label[m]; btn.setAttribute("data-mode", m); }
+      try { localStorage.setItem(KEY, m); } catch (e) {}
+    }
+    var cur = "auto";
+    try { cur = localStorage.getItem(KEY) || "auto"; } catch (e) {}
+    apply(cur);
+    if (btn) btn.addEventListener("click", function () {
+      var m = btn.getAttribute("data-mode") || "auto";
+      apply(modes[(modes.indexOf(m) + 1) % modes.length]);
+    });
+  })();
 
   applyLang(detectLang());
 </script>
