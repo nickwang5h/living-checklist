@@ -7,6 +7,8 @@
 > **Ça vous est utile ?** Une ⭐ Star est le meilleur des encouragements, et partagez-le avec ceux que ça pourrait aider.
 > Me suivre : [GitHub @MtsYama](https://github.com/MtsYama) · [LinkedIn](https://www.linkedin.com/in/zhengshen-shu/)
 
+> **Essayez-le en ligne (rien à installer) :** https://mtsyama.github.io/living-checklist/
+
 > Un seul fichier HTML qui transforme n'importe quel processus étape par étape en une checklist vivante qui se sauvegarde toute seule.
 
 *Step by step HTML*, c'est comme ça que je l'appelle habituellement.
@@ -15,6 +17,10 @@
 **Living Checklist** est un unique fichier `.html` autonome. CSS intégré, JS intégré, zéro dépendance. Double-cliquez dessus et il s'ouvre directement depuis `file://` dans votre navigateur. Aucune étape de build, aucun serveur, aucune connexion internet nécessaire pour le faire fonctionner.
 
 Vous ne modifiez pas de code pour l'utiliser. Vous modifiez le *contenu* (une petite section DATA + CONFIG avec des repères « remplissez vos données ici ») et le moteur en dessous reste intact. Ensuite, tout prend vie : cochez un élément et il glisse vers le bas de son étape, terminez une étape entière et la carte se replie d'elle-même dans une zone « Terminé », et une barre de progression suit l'ensemble. Chaque coche, repli et note est enregistré automatiquement dans votre navigateur. Fermez l'onglet et rouvrez-le plus tard : votre progression est exactement là où vous l'aviez laissée.
+
+**Ce que c'est (et ce que ce n'est pas).** Ce n'est pas une application finie que vous installez. C'est une façon de générer une checklist *vivante* avec une IA, ou à la main : décrivez ce dont vous avez besoin à une IA (ChatGPT, Claude, et autres), ou modifiez le fichier vous-même, et il en sort un seul fichier HTML que vous double-cliquez pour l'utiliser. L'outil lui-même ne contient aucune IA ; il s'appuie sur *votre* IA pour construire la checklist. Plus tard, il pourra devenir une application autonome qui se synchronise avec Notion et des outils similaires. Pas encore ; aujourd'hui, c'est ce seul fichier plus une skill Claude.
+
+**À qui ça s'adresse.** Aux personnes qui utilisent déjà l'IA, qui aiment les checklists et qui veulent qu'une IA leur en prépare une souvent ; ou à celles qui trouvent les outils de checklist existants un peu rigides et qui ont envie d'essayer autre chose. Pas encore aux personnes qui veulent une application soignée, prête à l'emploi et déjà reliée à Notion d'entrée de jeu.
 
 ## Captures d'écran
 

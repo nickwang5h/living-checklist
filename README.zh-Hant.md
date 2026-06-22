@@ -7,12 +7,18 @@
 > **覺得有用？** 給個 ⭐ Star 是對我最大的鼓勵，也歡迎分享 / 推薦給可能需要的人。
 > 關注我：[GitHub @MtsYama](https://github.com/MtsYama) · [領英 LinkedIn](https://www.linkedin.com/in/zhengshen-shu/)
 
+> **點開就能試（不用裝任何東西）：** https://mtsyama.github.io/living-checklist/
+
 
 「Step by step HTML」，我一般也這麼叫它。
 
 一份「活的」、分步驟的清單引擎，整個就是**一個 HTML 檔案**。雙擊打開就能用，沒有建置、沒有伺服器、不連網也能跑。
 
 勾掉一條，它會平滑地沉到這一步的底部；整步做完，卡片會自己摺疊、歸檔到「已完成」區。進度自動存在瀏覽器裡，關掉再打開還在。
+
+**這是什麼（不是什麼）。** 它不是一個裝上就能用的成品 app，而是一種用 AI、或者手動產生一份「活的」清單的方式：把需求說給 AI（ChatGPT、Claude 這些），或者自己改一下檔案，它就產出一個 HTML 檔案，雙擊就能用。工具本身不帶 AI，靠你自己的 AI 來把清單產生出來。後面也許會長成一個能對接 Notion 那類工具的獨立 app，但現在還沒有；今天它就是這一個檔案加一個 Claude skill。
+
+**適合誰。** 已經習慣用 AI、喜歡用清單、想讓 AI 常幫你拉一份的人；或者覺得現有清單工具用著不太順手、想試點別的的人。暫時還不適合想要一個裝上就能用、且開箱即對接 Notion 的成品 app 的人。
 
 ![base 模板，淺色](assets/base-light.png)
 

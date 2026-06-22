@@ -7,6 +7,8 @@
 > **Find it useful?** A ⭐ Star is the best encouragement, and please share it with anyone who'd find it handy.
 > Follow along: [GitHub @MtsYama](https://github.com/MtsYama) · [LinkedIn](https://www.linkedin.com/in/zhengshen-shu/)
 
+> **Try it live (nothing to install):** https://mtsyama.github.io/living-checklist/
+
 > A single HTML file that turns any step-by-step process into a living, self-saving checklist.
 
 *Step by step HTML*, which is what I usually call it.
@@ -15,6 +17,10 @@
 **Living Checklist** is one self-contained `.html` file. Inline CSS, inline JS, zero dependencies. Double-click it and it opens straight from `file://` in your browser. No build step, no server, no internet needed to run it.
 
 You don't edit code to use it. You edit the *content* (a small DATA + CONFIG section with "fill your data here" anchors) and the engine underneath stays untouched. Then it comes alive: check an item and it slides to the bottom of its step, finish a whole step and the card folds itself away into a "Done" area, and a progress bar tracks the whole thing. Every check, fold, and note is saved to your browser automatically. Close the tab and reopen it later, and your progress is right where you left it.
+
+**What this is (and isn't).** It's not a finished app you install. It's a way to generate a *living* checklist with AI, or by hand: describe what you need to an AI (ChatGPT, Claude, and the like), or edit the file yourself, and out comes a single HTML file you double-click to use. The tool itself has no AI inside; it runs on *your* AI to build the checklist. Down the road it may grow into a standalone app that syncs with Notion and similar tools. Not yet; today it's this single file plus a Claude skill.
+
+**Who it's for.** People who already use AI, like checklists, and want AI to spin one up often, or who find existing checklist tools a bit stiff and want to try something else. Not yet for people who want a polished, ready-made app wired into Notion out of the box.
 
 ## Screenshots
 
