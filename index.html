@@ -209,6 +209,15 @@
     margin-bottom: 2.2rem;
   }
   .section-lead strong { color: var(--fg); font-weight: 600; }
+  .forwho-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 1.6rem 2.6rem; margin-top: 2rem; }
+  @media (max-width: 720px) { .forwho-cols { grid-template-columns: 1fr; } }
+  .forwho-col { border-top: 1px solid var(--rule); padding-top: 1.2rem; }
+  .forwho-col-title { font-family: var(--font-mono); font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); margin-bottom: 1rem; }
+  .forwho-col--no .forwho-col-title { color: var(--fg-3); }
+  .forwho-col ul { list-style: none; display: flex; flex-direction: column; gap: 0.75rem; }
+  .forwho-col li { font-size: 1.06rem; line-height: 1.5; color: var(--fg-2); padding-left: 1.6rem; position: relative; }
+  .forwho-col--yes li::before { content: "\2713"; position: absolute; left: 0; color: var(--accent); font-weight: 700; }
+  .forwho-col--no li::before { content: "\2014"; position: absolute; left: 0; color: var(--fg-3); }
 
   /* ---------- feature list ---------- */
   .features { list-style: none; }
@@ -336,7 +345,17 @@
       <span class="section-no">·</span>
       <h2 class="section-title" data-i18n="forWhoTitle"></h2>
     </div>
-    <p class="section-lead" data-i18n-html="forWhoBody" style="max-width:64ch;"></p>
+    <p class="section-lead" data-i18n-html="forWhoLead" style="max-width:64ch;"></p>
+    <div class="forwho-cols">
+      <div class="forwho-col forwho-col--yes">
+        <h3 class="forwho-col-title" data-i18n="forForTitle"></h3>
+        <div data-i18n-html="forForBody"></div>
+      </div>
+      <div class="forwho-col forwho-col--no">
+        <h3 class="forwho-col-title" data-i18n="forNotTitle"></h3>
+        <div data-i18n-html="forNotBody"></div>
+      </div>
+    </div>
   </section>
 
   <!-- WHAT IT IS -->
@@ -442,15 +461,19 @@
       eyebrow: "Open source · single file · MIT",
       title: "Living Checklist",
       sub: "Step by step HTML",
-      lead: "Got something you do step by step (a move, a visa, a trip, a launch)? This turns it into a checklist you tick off. It remembers your progress on its own, and it's one file you just double-click to open.",
+      lead: "Love making checklists but always find them clunky? They get lost, the checked stuff piles into a mess, and keeping up means scrolling back and forth. This makes a checklist that's actually alive: checked items sink to the bottom, your progress saves itself (close it, reopen it, it's all there), everything is one tap to copy, and you can ask an AI right inside it.",
       roadmapTitle: "Now, and what's next",
       roadmapBody: "Right now the tool itself has no AI inside. You bring your own AI (ChatGPT, Claude, or just fill it by hand) to generate and edit a checklist, and the file makes it come alive: items sink, steps archive, progress saves. What's next: turning it into a standalone app that connects to Notion and other note tools, and stands alongside the classic Google and Microsoft checklist apps. For now it stays free and open source while the core gets solid.",
       forWhoTitle: "What this is, and who it's for",
-      forWhoBody: "<strong>It's not a finished app you download — it's a way to generate one.</strong> You describe what you need (to an AI like ChatGPT or Claude, or just by editing the file yourself) and out comes a single, self-contained HTML checklist you double-click to open.<br><br><strong>It's for you if</strong> you like making your own checklist or planning pages, or you want to spin one up for something and you're happy to use AI (or get a little hands-on) to do it.<br><br><strong>It's not for you yet if</strong> you just want a polished, ready-made app to install and use with no setup. That standalone app — and links to Notion and the like — is on the roadmap, not here today. For now, this is the open, free, AI-driven version.",
+      forWhoLead: "It's not a finished app you download. It's a way to <strong>generate a checklist with AI</strong>: tell an AI (ChatGPT, Claude, and the like) what you need, or edit the file yourself, and out comes an HTML checklist you double-click to use. The tool itself has no AI inside; it runs on your own AI to build the checklist.",
+      forForTitle: "It's for you if",
+      forForBody: "<ul><li>you're already comfortable using AI;</li><li>you like checklists and want AI to spin one up for you often;</li><li>the checklist tools out there don't quite feel right, and you want to try something else.</li></ul>",
+      forNotTitle: "Not for you yet if",
+      forNotBody: "<ul><li>you want a polished, ready-made AI app you just install and use;</li><li>you want it wired into Notion or other tools;</li><li>none of that exists yet (it's on the roadmap).</li></ul>",
       ctaRepo: "View on GitHub",
       ctaExample: "Try a live example",
 
-      whatTitle: "What it is",
+      whatTitle: "Under the hood",
       whatBody: "One self-contained .html file. Inline CSS, inline JS, zero dependencies. Double-click it and it opens straight from file:// — no build, no server, no internet. You edit the content, not the engine, and it comes alive.",
       features: [
         "<strong>Items sink as you check them</strong> — a smooth FLIP animation slides done items to the bottom of their step, so what's left stays on top.",
@@ -490,15 +513,19 @@
       eyebrow: "Open source · fichier unique · MIT",
       title: "Living Checklist",
       sub: "Step by step HTML",
-      lead: "Vous avez un truc à faire étape par étape (un déménagement, un visa, un voyage, un lancement) ? Ça le transforme en une checklist que vous cochez. Elle retient votre progression toute seule, et c'est un seul fichier qu'il suffit de double-cliquer pour ouvrir.",
+      lead: "Vous aimez faire des listes mais elles vous semblent toujours peu pratiques ? On les perd de vue, les éléments cochés s'entassent en désordre, et suivre l'avancement oblige à remonter sans cesse. Celle-ci est vraiment vivante : les éléments cochés descendent en bas, la progression se sauvegarde toute seule (fermez, rouvrez, tout est là), tout se copie en un geste, et vous pouvez interroger une IA directement dedans.",
       roadmapTitle: "Aujourd'hui, et la suite",
       roadmapBody: "Pour l'instant, l'outil lui-même n'a aucune IA à l'intérieur. Vous apportez votre propre IA (ChatGPT, Claude, ou vous remplissez à la main) pour générer et modifier une checklist, et le fichier la fait vivre : les éléments coulent, les étapes s'archivent, la progression se sauvegarde. La suite : en faire une application autonome qui se connecte à Notion et aux autres outils de notes, et qui se tient aux côtés des applis de checklist classiques de Google et Microsoft. Pour l'instant, ça reste gratuit et open source, le temps de bien solidifier le cœur.",
       forWhoTitle: "Ce que c'est, et à qui ça s'adresse",
-      forWhoBody: "<strong>Ce n'est pas une appli finie que vous téléchargez — c'est une façon d'en générer une.</strong> Vous décrivez ce qu'il vous faut (à une IA comme ChatGPT ou Claude, ou en modifiant vous-même le fichier) et il en sort une checklist HTML autonome, en un seul fichier, qu'il suffit de double-cliquer pour ouvrir.<br><br><strong>C'est pour vous si</strong> vous aimez créer vos propres checklists ou pages de planning, ou si vous voulez en monter une pour quelque chose et que ça ne vous dérange pas d'utiliser l'IA (ou de mettre un peu la main à la pâte) pour le faire.<br><br><strong>Ce n'est pas encore pour vous si</strong> vous voulez juste une appli soignée, prête à l'emploi, à installer et utiliser sans aucune configuration. Cette appli autonome — et les liens vers Notion et compagnie — est sur la feuille de route, pas ici aujourd'hui. Pour l'instant, voici la version ouverte, gratuite et propulsée par l'IA.",
+      forWhoLead: "Ce n'est pas une appli finie que vous téléchargez. C'est une façon de <strong>générer une checklist avec l'IA</strong> : décrivez ce qu'il vous faut à une IA (ChatGPT, Claude et compagnie), ou modifiez le fichier vous-même, et il en sort une checklist HTML qu'il suffit de double-cliquer pour utiliser. L'outil lui-même n'a aucune IA à l'intérieur ; il s'appuie sur votre propre IA pour construire la checklist.",
+      forForTitle: "C'est pour vous si",
+      forForBody: "<ul><li>vous êtes déjà à l'aise avec l'IA ;</li><li>vous aimez les checklists et vous voulez que l'IA vous en monte une souvent ;</li><li>les outils de checklist existants ne vous conviennent pas vraiment et vous voulez essayer autre chose.</li></ul>",
+      forNotTitle: "Pas encore pour vous si",
+      forNotBody: "<ul><li>vous voulez une appli d'IA soignée, prête à l'emploi, à simplement installer et utiliser ;</li><li>vous la voulez reliée à Notion ou à d'autres outils ;</li><li>rien de tout cela n'existe encore (c'est sur la feuille de route).</li></ul>",
       ctaRepo: "Voir sur GitHub",
       ctaExample: "Essayer un exemple",
 
-      whatTitle: "Ce que c'est",
+      whatTitle: "Sous le capot",
       whatBody: "Un fichier .html autonome. CSS intégré, JS intégré, zéro dépendance. Double-cliquez et il s'ouvre directement depuis file:// — aucun build, aucun serveur, aucune connexion. Vous modifiez le contenu, pas le moteur, et tout prend vie.",
       features: [
         "<strong>Les éléments coulent quand vous les cochez</strong> — une animation FLIP fluide glisse les éléments terminés vers le bas de leur étape, ce qui reste demeure en haut.",
@@ -538,15 +565,19 @@
       eyebrow: "开源 · 单文件 · MIT",
       title: "活页清单",
       sub: "Step by step HTML",
-      lead: "有那种得一步步做的事（搬家、办签证、出去玩、上线新东西）?这个把它变成一份能打勾的清单，勾到哪它自己记着，关了再开还在。就一个文件，双击就开，不用装东西。",
+      lead: "喜欢列清单、又老嫌它们不顺手?回头找不着、勾完乱糟糟、想跟进还得来回翻……这个把清单做「活」了：勾掉的自动沉底、进度自动留痕（关了再开还在）、内容随手复制粘贴，有问题还能直接在里面问 AI。",
       roadmapTitle: "现在，和接下来",
       roadmapBody: "现在这个工具本身不带 AI。你用自己的 AI（ChatGPT、Claude，或者干脆手动）来生成和修改清单，它负责把清单「活」起来:勾选沉底、整步归档、进度自存。接下来:把它做成一个能独立运行的 App，打通 Notion 等笔记工具，也对标 Google、微软那类传统 checklist 软件。现在先免费、开源，把核心打磨扎实。",
       forWhoTitle: "这到底是什么、给谁用",
-      forWhoBody: "<strong>它不是一个下载就能用的成品 App，而是一种「生成」清单的方式。</strong>你把需求说给 AI（比如 ChatGPT、Claude），或者自己改一下文件，它就给你产出一个自包含的 HTML 清单，双击就能打开。<br><br><strong>适合你，如果</strong>你喜欢自己做清单 / 计划页面，或者想给某件事拉一份清单、又愿意用 AI（或者自己稍微动动手）来做。<br><br><strong>暂时还不适合你，如果</strong>你只想要一个装上就能用、零配置的成品 App。那种独立 App、以及对接 Notion 之类，是未来的规划，现在还没有。现在这一版，是开源、免费、靠 AI 来生成的。",
+      forWhoLead: "它不是一个下载就能用的成品 App，而是一种<strong>用 AI 生成清单</strong>的方式：你把需求说给 AI（ChatGPT、Claude 这些）、或者自己改一下文件，它就产出一个 HTML 清单，双击就能用。工具本身不带 AI，靠你自己的 AI 来把清单生成出来。",
+      forForTitle: "适合你，如果",
+      forForBody: "<ul><li>你已经习惯用 AI；</li><li>你喜欢用清单，想让 AI 常帮你拉一份；</li><li>觉得现有的清单工具用着不顺手，想试点别的。</li></ul>",
+      forNotTitle: "暂时还不适合，如果",
+      forNotBody: "<ul><li>你想要一个装上就能用、完全做好的 AI App / 软件；</li><li>你想要它对接 Notion 等其它工具；</li><li>这些现在还没有（在未来规划里）。</li></ul>",
       ctaRepo: "在 GitHub 查看",
       ctaExample: "点开试一个真实例子",
 
-      whatTitle: "这是什么",
+      whatTitle: "底层怎么回事",
       whatBody: "一个自包含的 .html，CSS 和 JS 全内联，零依赖。双击就能从 file:// 直接打开 —— 不用构建、不用服务器、不用联网。你只改内容，不碰引擎，它就活了起来。",
       features: [
         "<strong>勾掉就沉底</strong> —— 用 FLIP 动画把勾完的条目平滑滑到这一步底部，没做的留在上面。",
@@ -586,15 +617,19 @@
       eyebrow: "開源 · 單檔案 · MIT",
       title: "活頁清單",
       sub: "Step by step HTML",
-      lead: "有那種得一步步做的事（搬家、辦簽證、出去玩、上線新東西）?這個把它變成一份能打勾的清單，勾到哪它自己記著，關了再開還在。就一個檔案，雙擊就開，不用裝東西。",
+      lead: "喜歡列清單、又老嫌它們不順手?回頭找不著、勾完亂糟糟、想跟進還得來回翻……這個把清單做「活」了：勾掉的自動沉底、進度自動留痕（關了再開還在）、內容隨手複製貼上，有問題還能直接在裡面問 AI。",
       roadmapTitle: "現在，和接下來",
       roadmapBody: "現在這個工具本身不帶 AI。你用自己的 AI（ChatGPT、Claude，或者乾脆手動）來生成和修改清單，它負責把清單「活」起來:勾選沉底、整步歸檔、進度自存。接下來:把它做成一個能獨立執行的 App，打通 Notion 等筆記工具，也對標 Google、微軟那類傳統 checklist 軟體。現在先免費、開源，把核心打磨扎實。",
       forWhoTitle: "這到底是什麼、給誰用",
-      forWhoBody: "<strong>它不是一個下載就能用的成品 App，而是一種「生成」清單的方式。</strong>你把需求說給 AI（比如 ChatGPT、Claude），或者自己改一下檔案，它就給你產出一個自包含的 HTML 清單，雙擊就能打開。<br><br><strong>適合你，如果</strong>你喜歡自己做清單 / 計畫頁面，或者想給某件事拉一份清單、又願意用 AI（或者自己稍微動動手）來做。<br><br><strong>暫時還不適合你，如果</strong>你只想要一個裝上就能用、零設定的成品 App。那種獨立 App、以及對接 Notion 之類，是未來的規劃，現在還沒有。現在這一版，是開源、免費、靠 AI 來生成的。",
+      forWhoLead: "它不是一個下載就能用的成品 App，而是一種<strong>用 AI 生成清單</strong>的方式：你把需求說給 AI（ChatGPT、Claude 這些）、或者自己改一下檔案，它就產出一個 HTML 清單，雙擊就能用。工具本身不帶 AI，靠你自己的 AI 來把清單生成出來。",
+      forForTitle: "適合你，如果",
+      forForBody: "<ul><li>你已經習慣用 AI；</li><li>你喜歡用清單，想讓 AI 常幫你拉一份；</li><li>覺得現有的清單工具用著不順手，想試點別的。</li></ul>",
+      forNotTitle: "暫時還不適合，如果",
+      forNotBody: "<ul><li>你想要一個裝上就能用、完全做好的 AI App / 軟體；</li><li>你想要它對接 Notion 等其它工具；</li><li>這些現在還沒有（在未來規劃裡）。</li></ul>",
       ctaRepo: "在 GitHub 查看",
       ctaExample: "點開試一個實例",
 
-      whatTitle: "這是什麼",
+      whatTitle: "底層怎麼回事",
       whatBody: "一個自包含的 .html，CSS 和 JS 全內聯，零依賴。雙擊就能從 file:// 直接打開 —— 不用建置、不用伺服器、不用連網。你只改內容，不碰引擎，它就活了起來。",
       features: [
         "<strong>勾掉就沉底</strong> —— 用 FLIP 動畫把勾完的項目平滑滑到這一步底部，沒做的留在上面。",
@@ -634,15 +669,19 @@
       eyebrow: "オープンソース · 単一ファイル · MIT",
       title: "活页清单",
       sub: "Step by step HTML",
-      lead: "一歩ずつ進めることはありませんか（引っ越し、ビザ、旅行、ローンチ）?これはそれをチェックして消していけるチェックリストに変えます。進捗は勝手に覚えてくれて、ダブルクリックで開くだけのファイル 1 つです。",
+      lead: "チェックリストは好きだけど、いつも使いにくいと感じませんか?どこにあるか分からなくなる、チェックした項目がごちゃつく、追うのに行ったり来たり。これは本当に「生きた」リストです：チェックした項目は下に沈み、進捗はひとりでに保存され（閉じて開き直してもそのまま）、何でもワンタップでコピーでき、リストの中で直接 AI に質問できます。",
       roadmapTitle: "いまと、これから",
       roadmapBody: "いまのところ、ツール自体に AI は入っていません。あなた自身の AI（ChatGPT、Claude、または手入力でも）でチェックリストを生成・編集し、ファイルがそれを生きたものにします：項目が沈み、ステップが片付き、進捗が保存されます。これから：Notion など他のメモツールとつながる単体のアプリにして、Google や Microsoft の定番チェックリストアプリと並ぶものにしていきます。当面は無料・オープンソースのまま、核をしっかり固めていきます。",
       forWhoTitle: "これは何で、誰のためのものか",
-      forWhoBody: "<strong>これはダウンロードして使う完成済みのアプリではなく、それを生成するための仕組みです。</strong>必要なものを AI（ChatGPT や Claude など）に伝えるか、自分でファイルを編集すれば、ダブルクリックで開ける単一・自己完結の HTML チェックリストが出来上がります。<br><br><strong>向いているのは</strong>、自分でチェックリストや計画ページを作るのが好きな人、あるいは何かのために一つ用意したくて、AI を使う（または少し手を動かす）ことに抵抗がない人です。<br><br><strong>まだ向いていないのは</strong>、設定なしでインストールしてすぐ使える、洗練された完成済みのアプリがほしいだけの人です。その単体アプリや、Notion などとの連携はロードマップ上のことで、今日ここにはありません。いまのところ、これはオープンで無料、AI で動くバージョンです。",
+      forWhoLead: "これはダウンロードして使う完成済みのアプリではなく、<strong>AI でチェックリストを生成する</strong>ための仕組みです。必要なものを AI（ChatGPT や Claude など）に伝えるか、自分でファイルを編集すると、ダブルクリックで使える HTML チェックリストが出来上がります。ツール自体に AI は入っておらず、あなた自身の AI を使ってチェックリストを作ります。",
+      forForTitle: "向いているのは",
+      forForBody: "<ul><li>すでに AI を使い慣れている人；</li><li>チェックリストが好きで、AI によく一つ作ってほしい人；</li><li>今あるチェックリストツールがしっくりこず、別のものを試したい人。</li></ul>",
+      forNotTitle: "まだ向いていないのは",
+      forNotBody: "<ul><li>インストールするだけで使える、洗練された完成済みの AI アプリがほしい人；</li><li>Notion など他のツールと連携させたい人；</li><li>それらはまだ存在しません（ロードマップ上のことです）。</li></ul>",
       ctaRepo: "GitHub で見る",
       ctaExample: "実例を試す",
 
-      whatTitle: "これは何か",
+      whatTitle: "仕組みの中身",
       whatBody: "それ自体で完結した 1 つの .html。CSS も JS もインライン、依存ゼロ。ダブルクリックすれば file:// から直接開きます —— ビルドなし、サーバーなし、インターネットも不要。編集するのはコンテンツだけ、エンジンには触れず、それは命を持ちます。",
       features: [
         "<strong>チェックすると項目が沈む</strong> —— なめらかな FLIP アニメーションで完了した項目をそのステップの一番下へ移し、残りが上に保たれます。",
