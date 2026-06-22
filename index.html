@@ -208,6 +208,7 @@
     line-height: 1.62; color: var(--fg-2); max-width: 60ch;
     margin-bottom: 2.2rem;
   }
+  .section-lead strong { color: var(--fg); font-weight: 600; }
 
   /* ---------- feature list ---------- */
   .features { list-style: none; }
@@ -329,6 +330,15 @@
     </div>
   </section>
 
+  <!-- WHO IT'S FOR · upfront positioning -->
+  <section class="section">
+    <div class="section-head">
+      <span class="section-no">·</span>
+      <h2 class="section-title" data-i18n="forWhoTitle"></h2>
+    </div>
+    <p class="section-lead" data-i18n-html="forWhoBody" style="max-width:64ch;"></p>
+  </section>
+
   <!-- WHAT IT IS -->
   <section class="section">
     <div class="section-head">
@@ -435,6 +445,8 @@
       lead: "Got something you do step by step (a move, a visa, a trip, a launch)? This turns it into a checklist you tick off. It remembers your progress on its own, and it's one file you just double-click to open.",
       roadmapTitle: "Now, and what's next",
       roadmapBody: "Right now the tool itself has no AI inside. You bring your own AI (ChatGPT, Claude, or just fill it by hand) to generate and edit a checklist, and the file makes it come alive: items sink, steps archive, progress saves. What's next: turning it into a standalone app that connects to Notion and other note tools, and stands alongside the classic Google and Microsoft checklist apps. For now it stays free and open source while the core gets solid.",
+      forWhoTitle: "What this is, and who it's for",
+      forWhoBody: "<strong>It's not a finished app you download — it's a way to generate one.</strong> You describe what you need (to an AI like ChatGPT or Claude, or just by editing the file yourself) and out comes a single, self-contained HTML checklist you double-click to open.<br><br><strong>It's for you if</strong> you like making your own checklist or planning pages, or you want to spin one up for something and you're happy to use AI (or get a little hands-on) to do it.<br><br><strong>It's not for you yet if</strong> you just want a polished, ready-made app to install and use with no setup. That standalone app — and links to Notion and the like — is on the roadmap, not here today. For now, this is the open, free, AI-driven version.",
       ctaRepo: "View on GitHub",
       ctaExample: "Try a live example",
 
@@ -481,6 +493,8 @@
       lead: "Vous avez un truc à faire étape par étape (un déménagement, un visa, un voyage, un lancement) ? Ça le transforme en une checklist que vous cochez. Elle retient votre progression toute seule, et c'est un seul fichier qu'il suffit de double-cliquer pour ouvrir.",
       roadmapTitle: "Aujourd'hui, et la suite",
       roadmapBody: "Pour l'instant, l'outil lui-même n'a aucune IA à l'intérieur. Vous apportez votre propre IA (ChatGPT, Claude, ou vous remplissez à la main) pour générer et modifier une checklist, et le fichier la fait vivre : les éléments coulent, les étapes s'archivent, la progression se sauvegarde. La suite : en faire une application autonome qui se connecte à Notion et aux autres outils de notes, et qui se tient aux côtés des applis de checklist classiques de Google et Microsoft. Pour l'instant, ça reste gratuit et open source, le temps de bien solidifier le cœur.",
+      forWhoTitle: "Ce que c'est, et à qui ça s'adresse",
+      forWhoBody: "<strong>Ce n'est pas une appli finie que vous téléchargez — c'est une façon d'en générer une.</strong> Vous décrivez ce qu'il vous faut (à une IA comme ChatGPT ou Claude, ou en modifiant vous-même le fichier) et il en sort une checklist HTML autonome, en un seul fichier, qu'il suffit de double-cliquer pour ouvrir.<br><br><strong>C'est pour vous si</strong> vous aimez créer vos propres checklists ou pages de planning, ou si vous voulez en monter une pour quelque chose et que ça ne vous dérange pas d'utiliser l'IA (ou de mettre un peu la main à la pâte) pour le faire.<br><br><strong>Ce n'est pas encore pour vous si</strong> vous voulez juste une appli soignée, prête à l'emploi, à installer et utiliser sans aucune configuration. Cette appli autonome — et les liens vers Notion et compagnie — est sur la feuille de route, pas ici aujourd'hui. Pour l'instant, voici la version ouverte, gratuite et propulsée par l'IA.",
       ctaRepo: "Voir sur GitHub",
       ctaExample: "Essayer un exemple",
 
@@ -527,6 +541,8 @@
       lead: "有那种得一步步做的事（搬家、办签证、出去玩、上线新东西）?这个把它变成一份能打勾的清单，勾到哪它自己记着，关了再开还在。就一个文件，双击就开，不用装东西。",
       roadmapTitle: "现在，和接下来",
       roadmapBody: "现在这个工具本身不带 AI。你用自己的 AI（ChatGPT、Claude，或者干脆手动）来生成和修改清单，它负责把清单「活」起来:勾选沉底、整步归档、进度自存。接下来:把它做成一个能独立运行的 App，打通 Notion 等笔记工具，也对标 Google、微软那类传统 checklist 软件。现在先免费、开源，把核心打磨扎实。",
+      forWhoTitle: "这到底是什么、给谁用",
+      forWhoBody: "<strong>它不是一个下载就能用的成品 App，而是一种「生成」清单的方式。</strong>你把需求说给 AI（比如 ChatGPT、Claude），或者自己改一下文件，它就给你产出一个自包含的 HTML 清单，双击就能打开。<br><br><strong>适合你，如果</strong>你喜欢自己做清单 / 计划页面，或者想给某件事拉一份清单、又愿意用 AI（或者自己稍微动动手）来做。<br><br><strong>暂时还不适合你，如果</strong>你只想要一个装上就能用、零配置的成品 App。那种独立 App、以及对接 Notion 之类，是未来的规划，现在还没有。现在这一版，是开源、免费、靠 AI 来生成的。",
       ctaRepo: "在 GitHub 查看",
       ctaExample: "点开试一个真实例子",
 
@@ -573,6 +589,8 @@
       lead: "有那種得一步步做的事（搬家、辦簽證、出去玩、上線新東西）?這個把它變成一份能打勾的清單，勾到哪它自己記著，關了再開還在。就一個檔案，雙擊就開，不用裝東西。",
       roadmapTitle: "現在，和接下來",
       roadmapBody: "現在這個工具本身不帶 AI。你用自己的 AI（ChatGPT、Claude，或者乾脆手動）來生成和修改清單，它負責把清單「活」起來:勾選沉底、整步歸檔、進度自存。接下來:把它做成一個能獨立執行的 App，打通 Notion 等筆記工具，也對標 Google、微軟那類傳統 checklist 軟體。現在先免費、開源，把核心打磨扎實。",
+      forWhoTitle: "這到底是什麼、給誰用",
+      forWhoBody: "<strong>它不是一個下載就能用的成品 App，而是一種「生成」清單的方式。</strong>你把需求說給 AI（比如 ChatGPT、Claude），或者自己改一下檔案，它就給你產出一個自包含的 HTML 清單，雙擊就能打開。<br><br><strong>適合你，如果</strong>你喜歡自己做清單 / 計畫頁面，或者想給某件事拉一份清單、又願意用 AI（或者自己稍微動動手）來做。<br><br><strong>暫時還不適合你，如果</strong>你只想要一個裝上就能用、零設定的成品 App。那種獨立 App、以及對接 Notion 之類，是未來的規劃，現在還沒有。現在這一版，是開源、免費、靠 AI 來生成的。",
       ctaRepo: "在 GitHub 查看",
       ctaExample: "點開試一個實例",
 
@@ -619,6 +637,8 @@
       lead: "一歩ずつ進めることはありませんか（引っ越し、ビザ、旅行、ローンチ）?これはそれをチェックして消していけるチェックリストに変えます。進捗は勝手に覚えてくれて、ダブルクリックで開くだけのファイル 1 つです。",
       roadmapTitle: "いまと、これから",
       roadmapBody: "いまのところ、ツール自体に AI は入っていません。あなた自身の AI（ChatGPT、Claude、または手入力でも）でチェックリストを生成・編集し、ファイルがそれを生きたものにします：項目が沈み、ステップが片付き、進捗が保存されます。これから：Notion など他のメモツールとつながる単体のアプリにして、Google や Microsoft の定番チェックリストアプリと並ぶものにしていきます。当面は無料・オープンソースのまま、核をしっかり固めていきます。",
+      forWhoTitle: "これは何で、誰のためのものか",
+      forWhoBody: "<strong>これはダウンロードして使う完成済みのアプリではなく、それを生成するための仕組みです。</strong>必要なものを AI（ChatGPT や Claude など）に伝えるか、自分でファイルを編集すれば、ダブルクリックで開ける単一・自己完結の HTML チェックリストが出来上がります。<br><br><strong>向いているのは</strong>、自分でチェックリストや計画ページを作るのが好きな人、あるいは何かのために一つ用意したくて、AI を使う（または少し手を動かす）ことに抵抗がない人です。<br><br><strong>まだ向いていないのは</strong>、設定なしでインストールしてすぐ使える、洗練された完成済みのアプリがほしいだけの人です。その単体アプリや、Notion などとの連携はロードマップ上のことで、今日ここにはありません。いまのところ、これはオープンで無料、AI で動くバージョンです。",
       ctaRepo: "GitHub で見る",
       ctaExample: "実例を試す",
 
