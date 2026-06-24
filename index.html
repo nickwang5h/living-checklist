@@ -38,6 +38,9 @@
     --font-body: "Manrope", "LXGW WenKai TC", system-ui, sans-serif;
     --font-mono: "IBM Plex Mono", ui-monospace, monospace;
     --font-cjk: "LXGW WenKai TC", "Manrope", system-ui, sans-serif;
+    /* topbar UI chrome ONLY: Latin from mono/Manrope, CJK falls back to a clean
+       sans (黑体) so 语言/简/繁/日 match the Latin weight — never the kai/brush body font */
+    --font-ui-sans-cjk: "PingFang SC", "PingFang TC", "Hiragino Sans", "Microsoft YaHei", "Noto Sans SC", "Noto Sans", sans-serif;
   }
   /* dark = system default (unless user forced light) */
   @media (prefers-color-scheme: dark) {
@@ -103,7 +106,8 @@
     flex-wrap: wrap;
   }
   .topbar-label {
-    font-family: var(--font-mono);
+    font-family: var(--font-mono), var(--font-ui-sans-cjk);
+    font-weight: 500;
     font-size: 14px; letter-spacing: 0.14em; text-transform: uppercase;
     color: var(--fg-3);
   }
@@ -119,7 +123,8 @@
   /* toggle — ported 1:1 from atelier base.css */
   .toggle { display: flex; gap: 6px; }
   .toggle button {
-    font-family: "IBM Plex Mono", monospace;
+    font-family: "IBM Plex Mono", var(--font-ui-sans-cjk);
+    font-weight: 500;
     font-size: 15px; letter-spacing: 0.03em;
     min-height: 44px; padding: 0 16px;
     border: 1px solid var(--rule-strong);
@@ -134,13 +139,17 @@
   }
   .topbar-right { display: flex; align-items: center; gap: 0.8rem; flex-wrap: wrap; }
   .theme-btn {
-    font-family: "IBM Plex Mono", monospace; font-size: 14px; letter-spacing: 0.03em;
+    font-family: "IBM Plex Mono", var(--font-ui-sans-cjk); font-weight: 500;
+    font-size: 14px; letter-spacing: 0.03em;
     min-height: 44px; padding: 0 12px;
+    display: inline-flex; align-items: center; gap: 0.45rem;
     border: 1px solid var(--rule-strong); background: transparent; color: var(--fg-2);
     cursor: pointer; border-radius: 0;
     transition: all 0.16s var(--ease);
   }
   .theme-btn:hover { border-color: var(--accent); color: var(--fg); }
+  .theme-btn .theme-ico { display: inline-flex; align-items: center; line-height: 1; }
+  .theme-btn .theme-ico svg { width: 1em; height: 1em; fill: currentColor; }
 
   /* ---------- hero ---------- */
   .hero { padding: clamp(3.6rem, 9vw, 6.4rem) 0 clamp(2.4rem, 5vw, 3.6rem); }
@@ -419,7 +428,7 @@
         <button type="button" data-lang="zh-Hant" aria-pressed="false">繁</button>
         <button type="button" data-lang="ja" aria-pressed="false">日</button>
       </div>
-      <button type="button" id="themeBtn" class="theme-btn" aria-label="Theme: Auto / Light / Dark">◐ Auto</button>
+      <button type="button" id="themeBtn" class="theme-btn" aria-label="Theme: Auto / Light / Dark"><span class="theme-ico"><svg viewBox="0 0 256 256" aria-hidden="true"><path d="M128,24A104,104,0,1,0,232,128,104.11,104.11,0,0,0,128,24Zm8,16.37a86.4,86.4,0,0,1,16,3V212.67a86.4,86.4,0,0,1-16,3Zm32,9.26a87.81,87.81,0,0,1,16,10.54V195.83a87.81,87.81,0,0,1-16,10.54ZM40,128a88.11,88.11,0,0,1,80-87.63V215.63A88.11,88.11,0,0,1,40,128Zm160,50.54V77.46a87.82,87.82,0,0,1,0,101.08Z"/></svg></span><span class="theme-txt">Auto</span></button>
     </div>
   </div>
 </header>
@@ -433,8 +442,20 @@
     <span class="hero-sub" data-i18n="sub">Step by step HTML</span>
     <p class="hero-lead" data-i18n="lead"></p>
     <div class="hero-actions">
-      <a target="_blank" rel="noopener" class="btn btn--filled" href="templates/base.html" data-i18n="ctaTemplate">Try the template</a>
-      <a target="_blank" rel="noopener" class="btn" href="https://github.com/MtsYama/living-checklist" data-i18n="ctaRepo">View on GitHub</a>
+      <a target="_blank" rel="noopener" class="btn btn--filled" href="templates/base.html"
+         data-href-en="templates/base.html?lang=en"
+         data-href-fr="templates/base.html?lang=fr"
+         data-href-zh-Hans="templates/base.html?lang=zh-Hans"
+         data-href-zh-Hant="templates/base.html?lang=zh-Hant"
+         data-href-ja="templates/base.html?lang=ja"
+         data-i18n="ctaTemplate">Try the template</a>
+      <a target="_blank" rel="noopener" class="btn" href="https://github.com/MtsYama/living-checklist"
+         data-href-en="https://github.com/MtsYama/living-checklist"
+         data-href-fr="https://github.com/MtsYama/living-checklist/blob/main/README.fr.md"
+         data-href-zh-Hans="https://github.com/MtsYama/living-checklist/blob/main/README.zh.md"
+         data-href-zh-Hant="https://github.com/MtsYama/living-checklist/blob/main/README.zh-Hant.md"
+         data-href-ja="https://github.com/MtsYama/living-checklist/blob/main/README.ja.md"
+         data-i18n="ctaRepo">View on GitHub</a>
     </div>
   </section>
 
@@ -467,7 +488,13 @@
     <div class="example">
       <p class="example-quote" data-i18n="exQuote"></p>
       <p class="example-note" data-i18n="exNote"></p>
-      <a target="_blank" rel="noopener" class="btn btn--filled" href="examples/europe-japan-trip.html" data-i18n="exCta"></a>
+      <a target="_blank" rel="noopener" class="btn btn--filled" href="examples/europe-japan-trip.html"
+         data-href-en="examples/europe-japan-trip.html?lang=en"
+         data-href-fr="examples/europe-japan-trip.html?lang=fr"
+         data-href-zh-Hans="examples/europe-japan-trip.html?lang=zh-Hans"
+         data-href-zh-Hant="examples/europe-japan-trip.html?lang=zh-Hant"
+         data-href-ja="examples/europe-japan-trip.html?lang=ja"
+         data-i18n="exCta"></a>
     </div>
   </section>
 
@@ -534,7 +561,12 @@
 
     <!-- DEMO GIF · the strongest "it's alive" visual · swaps by language -->
     <figure class="demo">
-      <a class="demo-link" href="templates/base.html" target="_blank" rel="noopener">
+      <a class="demo-link" href="templates/base.html" target="_blank" rel="noopener"
+         data-href-en="templates/base.html?lang=en"
+         data-href-fr="templates/base.html?lang=fr"
+         data-href-zh-Hans="templates/base.html?lang=zh-Hans"
+         data-href-zh-Hant="templates/base.html?lang=zh-Hant"
+         data-href-ja="templates/base.html?lang=ja">
         <img id="demoGif" src="assets/demo-en.gif" alt="" data-alt="demoAlt"
              data-img-en="assets/demo-en.gif"
              data-img-fr="assets/demo-fr.gif"
@@ -548,7 +580,12 @@
     <h3 class="shots-subtitle" data-i18n="shotsTitle"></h3>
     <div class="shots">
       <figure class="shot">
-        <a class="shot-link" href="templates/base.html" target="_blank" rel="noopener"><img src="assets/base-en.png" alt="" data-alt="shotBlueAlt"
+        <a class="shot-link" href="templates/base.html" target="_blank" rel="noopener"
+          data-href-en="templates/base.html?lang=en"
+          data-href-fr="templates/base.html?lang=fr"
+          data-href-zh-Hans="templates/base.html?lang=zh-Hans"
+          data-href-zh-Hant="templates/base.html?lang=zh-Hant"
+          data-href-ja="templates/base.html?lang=ja"><img src="assets/base-en.png" alt="" data-alt="shotBlueAlt"
           data-img-en="assets/base-en.png"
           data-img-fr="assets/base-fr.png"
           data-img-zh-Hans="assets/base-zh-Hans.png"
@@ -557,7 +594,12 @@
         <figcaption class="shot-cap" data-i18n="shotBlue"></figcaption>
       </figure>
       <figure class="shot">
-        <a class="shot-link" href="templates/base-burgundy.html" target="_blank" rel="noopener"><img src="assets/base-burgundy-en.png" alt="" data-alt="shotBurgundyAlt"
+        <a class="shot-link" href="templates/base-burgundy.html" target="_blank" rel="noopener"
+          data-href-en="templates/base-burgundy.html?lang=en"
+          data-href-fr="templates/base-burgundy.html?lang=fr"
+          data-href-zh-Hans="templates/base-burgundy.html?lang=zh-Hans"
+          data-href-zh-Hant="templates/base-burgundy.html?lang=zh-Hant"
+          data-href-ja="templates/base-burgundy.html?lang=ja"><img src="assets/base-burgundy-en.png" alt="" data-alt="shotBurgundyAlt"
           data-img-en="assets/base-burgundy-en.png"
           data-img-fr="assets/base-burgundy-fr.png"
           data-img-zh-Hans="assets/base-burgundy-zh-Hans.png"
@@ -566,7 +608,12 @@
         <figcaption class="shot-cap" data-i18n="shotBurgundy"></figcaption>
       </figure>
       <figure class="shot">
-        <a class="shot-link" href="templates/mx-studio.html" target="_blank" rel="noopener"><img src="assets/mx-en.png" alt="" data-alt="shotMxAlt"
+        <a class="shot-link" href="templates/mx-studio.html" target="_blank" rel="noopener"
+          data-href-en="templates/mx-studio.html?lang=en"
+          data-href-fr="templates/mx-studio.html?lang=fr"
+          data-href-zh-Hans="templates/mx-studio.html?lang=zh-Hans"
+          data-href-zh-Hant="templates/mx-studio.html?lang=zh-Hant"
+          data-href-ja="templates/mx-studio.html?lang=ja"><img src="assets/mx-en.png" alt="" data-alt="shotMxAlt"
           data-img-en="assets/mx-en.png"
           data-img-fr="assets/mx-fr.png"
           data-img-zh-Hans="assets/mx-zh-Hans.png"
@@ -585,7 +632,13 @@
     <a target="_blank" rel="noopener" href="https://github.com/MtsYama/living-checklist/stargazers">⭐ Star</a>
     <a target="_blank" rel="noopener" href="https://github.com/MtsYama/living-checklist">GitHub</a>
     <a target="_blank" rel="noopener" href="https://www.linkedin.com/in/zhengshen-shu/">LinkedIn</a>
-    <a target="_blank" rel="noopener" href="https://github.com/MtsYama/living-checklist#readme" data-i18n="footReadme">Readme</a>
+    <a target="_blank" rel="noopener" href="https://github.com/MtsYama/living-checklist#readme"
+       data-href-en="https://github.com/MtsYama/living-checklist#readme"
+       data-href-fr="https://github.com/MtsYama/living-checklist/blob/main/README.fr.md"
+       data-href-zh-Hans="https://github.com/MtsYama/living-checklist/blob/main/README.zh.md"
+       data-href-zh-Hant="https://github.com/MtsYama/living-checklist/blob/main/README.zh-Hant.md"
+       data-href-ja="https://github.com/MtsYama/living-checklist/blob/main/README.ja.md"
+       data-i18n="footReadme">Readme</a>
     <a target="_blank" rel="noopener" href="https://github.com/MtsYama/living-checklist/blob/main/LICENSE">MIT</a>
   </span>
 </footer>
@@ -973,6 +1026,13 @@
       if (src) el.setAttribute("src", src);
     });
 
+    // language-aware links — point each anchor at this lang's target
+    // (README links → that lang's README; template/example links carry ?lang=<lang>)
+    document.querySelectorAll("[data-href-" + lang + "]").forEach(function (el) {
+      var href = el.getAttribute("data-href-" + lang);
+      if (href) el.setAttribute("href", href);
+    });
+
     // image alt text
     document.querySelectorAll("[data-alt]").forEach(function (el) {
       var key = el.getAttribute("data-alt");
@@ -1009,12 +1069,23 @@
     var KEY = "lc-landing-theme", root = document.documentElement;
     var btn = document.getElementById("themeBtn");
     var modes = ["auto", "light", "dark"];
-    var label = { auto: "◐ Auto", light: "☀ Light", dark: "🌙 Dark" };
+    // Phosphor (regular) inline SVG icons — same convention as mx-studio.html ICONS:
+    // viewBox 0 0 256 256, fill: currentColor, ~1em. Circle Half = Auto, Sun = Light, Moon = Dark.
+    var ICON = {
+      auto: '<path d="M128,24A104,104,0,1,0,232,128,104.11,104.11,0,0,0,128,24Zm8,16.37a86.4,86.4,0,0,1,16,3V212.67a86.4,86.4,0,0,1-16,3Zm32,9.26a87.81,87.81,0,0,1,16,10.54V195.83a87.81,87.81,0,0,1-16,10.54ZM40,128a88.11,88.11,0,0,1,80-87.63V215.63A88.11,88.11,0,0,1,40,128Zm160,50.54V77.46a87.82,87.82,0,0,1,0,101.08Z"/>',
+      light: '<path d="M120,40V16a8,8,0,0,1,16,0V40a8,8,0,0,1-16,0Zm72,88a64,64,0,1,1-64-64A64.07,64.07,0,0,1,192,128Zm-16,0a48,48,0,1,0-48,48A48.05,48.05,0,0,0,176,128ZM58.34,69.66A8,8,0,0,0,69.66,58.34l-16-16A8,8,0,0,0,42.34,53.66Zm0,116.68-16,16a8,8,0,0,0,11.32,11.32l16-16a8,8,0,0,0-11.32-11.32ZM192,72a8,8,0,0,0,5.66-2.34l16-16a8,8,0,0,0-11.32-11.32l-16,16A8,8,0,0,0,192,72Zm5.66,114.34a8,8,0,0,0-11.32,11.32l16,16a8,8,0,0,0,11.32-11.32ZM48,128a8,8,0,0,0-8-8H16a8,8,0,0,0,0,16H40A8,8,0,0,0,48,128Zm80,80a8,8,0,0,0-8,8v24a8,8,0,0,0,16,0V216A8,8,0,0,0,128,208Zm112-88H216a8,8,0,0,0,0,16h24a8,8,0,0,0,0-16Z"/>',
+      dark: '<path d="M233.54,142.23a8,8,0,0,0-8-2,88.08,88.08,0,0,1-109.8-109.8,8,8,0,0,0-10-10,104.84,104.84,0,0,0-52.91,37A104,104,0,0,0,136,224a103.09,103.09,0,0,0,62.52-20.88,104.84,104.84,0,0,0,37-52.91A8,8,0,0,0,233.54,142.23ZM188.9,190.34A88,88,0,0,1,65.66,67.11a89,89,0,0,1,31.4-26A106,106,0,0,0,96,56,104.11,104.11,0,0,0,200,160a106,106,0,0,0,14.92-1.06A89,89,0,0,1,188.9,190.34Z"/>'
+    };
+    var TXT = { auto: "Auto", light: "Light", dark: "Dark" };
+    function svg(m) {
+      return '<span class="theme-ico"><svg viewBox="0 0 256 256" aria-hidden="true">' +
+             ICON[m] + '</svg></span><span class="theme-txt">' + TXT[m] + '</span>';
+    }
     function apply(m) {
       if (modes.indexOf(m) < 0) m = "auto";
       if (m === "auto") root.removeAttribute("data-theme");
       else root.setAttribute("data-theme", m);
-      if (btn) { btn.textContent = label[m]; btn.setAttribute("data-mode", m); }
+      if (btn) { btn.innerHTML = svg(m); btn.setAttribute("data-mode", m); }
       try { localStorage.setItem(KEY, m); } catch (e) {}
     }
     var cur = "auto";

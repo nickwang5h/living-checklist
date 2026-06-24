@@ -1893,9 +1893,12 @@ function detectLang() {
 }
 
 function boot() {
-  // Restore language: previously chosen > browser language auto-detect > CONFIG default
+  // Restore language: URL ?lang= > previously chosen > browser language auto-detect > CONFIG default
+  let urlLang = null;
+  try { urlLang = new URLSearchParams(location.search).get("lang"); } catch (_) {}
   const savedLang = loadStr(K.lang(), null);
-  if (savedLang && CONFIG.languages.indexOf(savedLang) >= 0) CONFIG.lang = savedLang;
+  if (urlLang && CONFIG.languages.indexOf(urlLang) >= 0) { CONFIG.lang = urlLang; saveStr(K.lang(), urlLang); }
+  else if (savedLang && CONFIG.languages.indexOf(savedLang) >= 0) CONFIG.lang = savedLang;
   else { const auto = detectLang(); if (auto) CONFIG.lang = auto; }
   applyTheme(); applyFont();
   refreshActive(); applyLangAttr(); applyChrome();
