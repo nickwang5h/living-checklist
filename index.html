@@ -312,6 +312,21 @@
     color: var(--accent); background: rgba(170, 144, 104, 0.1);
     padding: 0.1em 0.35em;
   }
+  /* install command block — on-brand inset, IBM Plex Mono */
+  .install {
+    font-family: var(--font-mono); font-size: 0.82rem; line-height: 1.7;
+    color: var(--fg); background: rgba(170, 144, 104, 0.08);
+    border: 1px solid var(--rule-strong);
+    border-left: 2px solid var(--accent);
+    padding: 0.85rem 1rem; margin: 0.2rem 0 0.6rem;
+    overflow-x: auto; -webkit-overflow-scrolling: touch;
+    white-space: pre; user-select: text; -webkit-user-select: text;
+  }
+  .install .cmd-line { display: block; }
+  .install .cmd-line::before {
+    content: "$ "; color: var(--accent); opacity: 0.7;
+  }
+  .usage-body .install-note { display: block; margin-top: 0.2rem; }
 
   /* ---------- example callout ---------- */
   .example {
@@ -425,7 +440,12 @@
       <article class="usage-card">
         <span class="usage-no">02</span>
         <h3 class="usage-title" data-i18n="use2Title"></h3>
-        <p class="usage-body" data-i18n-html="use2Body"></p>
+        <div class="usage-body">
+          <p data-i18n-html="use2Intro"></p>
+          <pre class="install"><code><span class="cmd-line">/plugin marketplace add MtsYama/living-checklist</span><span class="cmd-line">/plugin install living-checklist@living-checklist</span></code></pre>
+          <p data-i18n-html="use2Invoke"></p>
+          <p class="install-note" data-i18n-html="use2Clone"></p>
+        </div>
       </article>
       <article class="usage-card">
         <span class="usage-no">03</span>
@@ -546,7 +566,9 @@
       use1Title: "By hand",
       use1Body: "Copy a template, edit the <code>DATA</code> and <code>CONFIG</code> sections, open the file. No tooling required.",
       use2Title: "As a Claude skill",
-      use2Body: "This repo is the skill. Clone it into <code>~/.claude/skills/</code> and ask your AI: make me a checklist for X.",
+      use2Intro: "This repo ships a Claude Code plugin. Add the marketplace and install it in two lines:",
+      use2Invoke: "Then run <code>/living-checklist:living-checklist</code>, or just ask your AI: make me a checklist for X.",
+      use2Clone: "Prefer manual? Clone the repo into <code>~/.claude/skills/</code> instead.",
       use3Title: "Chat only",
       use3Body: "No command line. Copy the built-in prompt, paste it into any web AI chat — ChatGPT, Claude, Gemini — and it generates a checklist for you.",
 
@@ -606,7 +628,9 @@
       use1Title: "À la main",
       use1Body: "Copiez un modèle, modifiez les sections <code>DATA</code> et <code>CONFIG</code>, ouvrez le fichier. Aucun outil requis.",
       use2Title: "Comme skill Claude",
-      use2Body: "Ce dépôt est le skill. Clonez-le dans <code>~/.claude/skills/</code> et demandez à votre IA : fais-moi une checklist pour X.",
+      use2Intro: "Ce dépôt fournit un plugin Claude Code. Ajoutez le marketplace et installez-le en deux lignes :",
+      use2Invoke: "Lancez ensuite <code>/living-checklist:living-checklist</code>, ou demandez simplement à votre IA : fais-moi une checklist pour X.",
+      use2Clone: "Plutôt à la main ? Clonez plutôt le dépôt dans <code>~/.claude/skills/</code>.",
       use3Title: "Chat seulement",
       use3Body: "Sans ligne de commande. Copiez le prompt intégré, collez-le dans n'importe quel chat IA — ChatGPT, Claude, Gemini — et il vous génère une checklist.",
 
@@ -666,7 +690,9 @@
       use1Title: "当人手动用",
       use1Body: "复制一份模板，改 <code>DATA</code> 和 <code>CONFIG</code> 两段，打开文件。不用任何工具。",
       use2Title: "当 Claude skill 用",
-      use2Body: "这个 repo 本身就是 skill。clone 到 <code>~/.claude/skills/</code>，然后跟 AI 说：给我做一份关于 X 的清单。",
+      use2Intro: "这个 repo 自带一个 Claude Code 插件。加上插件市场、两行装好：",
+      use2Invoke: "然后运行 <code>/living-checklist:living-checklist</code>，或者直接跟 AI 说：给我做一份关于 X 的清单。",
+      use2Clone: "想手动装?也可以把 repo clone 到 <code>~/.claude/skills/</code>。",
       use3Title: "纯聊天",
       use3Body: "不用命令行。复制内置的提示词，粘到任意网页 AI 对话里 —— ChatGPT、Claude、Gemini —— 它就替你生成一份清单。",
 
@@ -726,7 +752,9 @@
       use1Title: "當人手動用",
       use1Body: "複製一份模板，改 <code>DATA</code> 和 <code>CONFIG</code> 兩段，打開檔案。不用任何工具。",
       use2Title: "當 Claude skill 用",
-      use2Body: "這個 repo 本身就是 skill。clone 到 <code>~/.claude/skills/</code>，然後跟 AI 說：給我做一份關於 X 的清單。",
+      use2Intro: "這個 repo 自帶一個 Claude Code 外掛。加上外掛市集、兩行裝好：",
+      use2Invoke: "然後執行 <code>/living-checklist:living-checklist</code>，或者直接跟 AI 說：給我做一份關於 X 的清單。",
+      use2Clone: "想手動裝?也可以把 repo clone 到 <code>~/.claude/skills/</code>。",
       use3Title: "純聊天",
       use3Body: "不用命令列。複製內建的提示詞，貼到任意網頁 AI 對話裡 —— ChatGPT、Claude、Gemini —— 它就替你生成一份清單。",
 
@@ -786,7 +814,9 @@
       use1Title: "手で使う",
       use1Body: "テンプレートをコピーし、<code>DATA</code> と <code>CONFIG</code> を編集してファイルを開くだけ。ツールは不要です。",
       use2Title: "Claude スキルとして",
-      use2Body: "このリポジトリ自体がスキルです。<code>~/.claude/skills/</code> に clone して、AI に「X のチェックリストを作って」と頼むだけ。",
+      use2Intro: "このリポジトリは Claude Code プラグインを同梱しています。マーケットプレイスを追加して 2 行でインストール：",
+      use2Invoke: "あとは <code>/living-checklist:living-checklist</code> を実行するか、AI に「X のチェックリストを作って」と頼むだけ。",
+      use2Clone: "手動がよければ、<code>~/.claude/skills/</code> にリポジトリを clone してもかまいません。",
       use3Title: "チャットだけ",
       use3Body: "コマンドライン不要。内蔵のプロンプトをコピーして、好きな Web の AI チャット —— ChatGPT、Claude、Gemini —— に貼れば、チェックリストを生成してくれます。",
 

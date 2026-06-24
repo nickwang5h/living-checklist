@@ -11,6 +11,19 @@
 
 > あらゆる step-by-step なプロセスを、自分で進捗を保存し続ける「生きたチェックリスト」に変える、たった 1 つの HTML ファイル。
 
+## インストール（一度の貼り付け）
+
+Claude Code を使っているなら、このリポジトリをプラグインマーケットプレイスとして追加し、スキルをインストールします：
+
+```
+/plugin marketplace add MtsYama/living-checklist
+/plugin install living-checklist@living-checklist
+```
+
+あとは `/living-checklist:living-checklist` を実行するか、AI に *「X のチェックリストを作って」* と頼むだけ。テンプレートを埋めてくれます。
+
+Claude Code を使っていない場合は、ほかに 2 つの方法があります。リポジトリを `~/.claude/skills/living-checklist/` にクローンするか、インストールせずに [プロンプトをコピー](#3-つの使い方)して任意の Web AI チャットに貼り付けるかです。詳しくは下の [3 つの使い方](#3-つの使い方) を参照してください。
+
 「Step by step HTML」、私はいつもこう呼んでいます。
 
 
@@ -57,7 +70,14 @@
 
 **1. 人間が手作業で。** テンプレートをコピーし、DATA と CONFIG セクションを編集して、ファイルを開く。ツールは一切不要です。
 
-**2. Claude のスキルとして。** このリポジトリ*こそが*スキルです — ルートにある [`SKILL.md`](SKILL.md) とテンプレート一式。これを `~/.claude/skills/living-checklist/` にクローンする（またはプラグインマーケットプレイス経由でインストールする）だけで、あとは AI に *「X のチェックリストを作って」* と頼むだけ。テンプレートを埋めてくれます。
+**2. Claude のスキルとして。** このリポジトリ*こそが*スキルです。Claude Code で最も速いのは、一度の貼り付けでのインストールです：
+
+```
+/plugin marketplace add MtsYama/living-checklist
+/plugin install living-checklist@living-checklist
+```
+
+あとは `/living-checklist:living-checklist` を実行するか、AI に *「X のチェックリストを作って」* と頼むだけ。テンプレートを埋めてくれます。マーケットプレイスを使いたくない場合は、リポジトリを直接 `~/.claude/skills/living-checklist/` にクローンしてもかまいません — ルートにある [`SKILL.md`](SKILL.md) とテンプレート一式が、このスキルのすべてです。
 
 **3. チャットだけで、コマンドライン不要。** どのチドラックリストでも開いて、上部バナーの **「プロンプトをコピー」** ボタンをクリックします。それを任意の Web AI チャット — ChatGPT、Claude、Gemini、お使いのもの何でも — に貼り付ければ、シンプルなチェックリスト HTML を生成してくれます。インストールなし、CLI なし、セットアップするものは何もありません。
 

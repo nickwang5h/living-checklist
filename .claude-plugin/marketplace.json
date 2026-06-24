@@ -1,0 +1,13 @@
+{
+  "name": "living-checklist",
+  "owner": { "name": "MtsYama", "email": "mountainswww@outlook.com" },
+  "description": "Living Checklist: interactive single-file HTML step-by-step checklists — progress auto-saved, per-item notes, nested subtasks, 5 languages, light/dark themes.",
+  "plugins": [
+    {
+      "name": "living-checklist",
+      "source": "./",
+      "description": "Generate an interactive HTML step-by-step checklist (Living Checklist / 活页清单): single file, double-click to open, progress saved in the browser. Ships two clean default colors (Lapis blue / Burgundy) plus an MX Studio designer skin.",
+      "version": "1.0.0"
+    }
+  ]
+}

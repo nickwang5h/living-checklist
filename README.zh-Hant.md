@@ -9,6 +9,19 @@
 
 > **點開就能試（不用裝任何東西）：** https://mtsyama.github.io/living-checklist/
 
+## 安裝（一次貼上）
+
+用 Claude Code 的話，把這個 repo 當 plugin marketplace 加進去，再裝 skill：
+
+```
+/plugin marketplace add MtsYama/living-checklist
+/plugin install living-checklist@living-checklist
+```
+
+然後要麼跑 `/living-checklist:living-checklist`，要麼直接跟 AI 說「給我做一份關於 X 的清單」——它會幫你把模板填好。
+
+不用 Claude Code？還有兩種走法：把 repo clone 到 `~/.claude/skills/living-checklist/`，或者乾脆不裝，[把 prompt 複製](#三種用法)到任意網頁 AI 聊天裡。詳見下面[三種用法](#三種用法)。
+
 
 「Step by step HTML」，我一般也這麼叫它。
 
@@ -63,7 +76,14 @@
 
 ### 2. 當 Claude skill 用（這個 repo 本身就是 skill）
 
-根目錄的 `SKILL.md` + `templates/` 就構成一個完整的 skill。把它 clone 到 `~/.claude/skills/living-checklist/`（或者放進 plugin marketplace），然後跟你的 AI 說「給我做一份關於 X 的清單」，它會幫你把模板填好。
+在 Claude Code 裡最快的方式是一次貼上裝好：
+
+```
+/plugin marketplace add MtsYama/living-checklist
+/plugin install living-checklist@living-checklist
+```
+
+然後跑 `/living-checklist:living-checklist`，或者直接跟你的 AI 說「給我做一份關於 X 的清單」，它會幫你把模板填好。不想走 marketplace？也可以把 repo 直接 clone 到 `~/.claude/skills/living-checklist/`——根目錄的 `SKILL.md` + `templates/` 就是這個 skill 的全部。
 
 ### 3. 純聊天（沒有命令列也行）
 

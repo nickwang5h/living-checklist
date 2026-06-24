@@ -9,6 +9,19 @@
 
 > **Essayez-le en ligne (rien à installer) :** https://mtsyama.github.io/living-checklist/
 
+## Installation (un copier-coller)
+
+Si vous utilisez Claude Code, ajoutez ce dépôt comme place de marché de plugins, puis installez le skill :
+
+```
+/plugin marketplace add MtsYama/living-checklist
+/plugin install living-checklist@living-checklist
+```
+
+Ensuite, lancez `/living-checklist:living-checklist`, ou demandez simplement à votre IA *« fais-moi une checklist pour X »* — elle remplit un modèle à votre place.
+
+Vous n'utilisez pas Claude Code ? Deux autres voies : clonez ce dépôt dans `~/.claude/skills/living-checklist/`, ou sautez l'installation et [copiez le prompt](#trois-façons-de-lutiliser) dans n'importe quelle conversation IA sur le web. Voir [Trois façons de l'utiliser](#trois-façons-de-lutiliser) plus bas.
+
 > Un seul fichier HTML qui transforme n'importe quel processus étape par étape en une checklist vivante qui se sauvegarde toute seule.
 
 *Step by step HTML*, c'est comme ça que je l'appelle habituellement.
@@ -57,7 +70,14 @@ Pour le rendre *vôtre*, ouvrez le fichier dans n'importe quel éditeur de texte
 
 **1. En tant qu'humain, à la main.** Copiez un modèle, modifiez les sections DATA et CONFIG, ouvrez le fichier. Aucun outillage requis.
 
-**2. En tant que skill Claude.** Ce dépôt *est* le skill — [`SKILL.md`](SKILL.md) à la racine plus les modèles. Clonez-le dans `~/.claude/skills/living-checklist/` (ou installez-le via une place de marché de plugins) et demandez simplement à votre IA : *« fais-moi une checklist pour X. »* Elle remplit le modèle à votre place.
+**2. En tant que skill Claude.** Ce dépôt *est* le skill. Dans Claude Code, le plus rapide est l'installation par copier-coller :
+
+```
+/plugin marketplace add MtsYama/living-checklist
+/plugin install living-checklist@living-checklist
+```
+
+Ensuite, lancez `/living-checklist:living-checklist`, ou demandez simplement à votre IA : *« fais-moi une checklist pour X. »* Elle remplit le modèle à votre place. Vous préférez ne pas passer par la place de marché ? Clonez le dépôt directement dans `~/.claude/skills/living-checklist/` — [`SKILL.md`](SKILL.md) à la racine plus les modèles, c'est tout ce qu'est le skill.
 
 **3. En conversation uniquement, sans ligne de commande.** Ouvrez n'importe quelle checklist et cliquez sur le bouton **« Copier le prompt »** dans la bannière du haut. Collez-le dans n'importe quelle conversation IA sur le web — ChatGPT, Claude, Gemini, peu importe ce que vous utilisez — et elle vous génère une checklist HTML simple. Aucune installation, aucune CLI, rien à configurer.
 

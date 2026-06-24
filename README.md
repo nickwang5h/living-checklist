@@ -9,6 +9,19 @@
 
 > **Try it live (nothing to install):** https://mtsyama.github.io/living-checklist/
 
+## Install (one paste)
+
+If you use Claude Code, add this repo as a plugin marketplace and install the skill:
+
+```
+/plugin marketplace add MtsYama/living-checklist
+/plugin install living-checklist@living-checklist
+```
+
+Then either run `/living-checklist:living-checklist`, or just ask the AI *"make me a checklist for X"* — it fills a template in for you.
+
+Don't use Claude Code? Two other ways: clone this repo into `~/.claude/skills/living-checklist/`, or skip install entirely and [copy the prompt](#three-ways-to-use-it) into any web AI chat. See [Three ways to use it](#three-ways-to-use-it) below.
+
 > A single HTML file that turns any step-by-step process into a living, self-saving checklist.
 
 *Step by step HTML*, which is what I usually call it.
@@ -57,7 +70,14 @@ To make it *yours*, open the file in any text editor and edit the two clearly ma
 
 **1. As a human, by hand.** Copy a template, edit the DATA and CONFIG sections, open the file. No tooling required.
 
-**2. As a Claude skill.** This repo *is* the skill — [`SKILL.md`](SKILL.md) at the root plus the templates. Clone it into `~/.claude/skills/living-checklist/` (or install it via a plugin marketplace) and just ask your AI: *"make me a checklist for X."* It fills the template in for you.
+**2. As a Claude skill.** This repo *is* the skill. The fastest way in Claude Code is the one-paste plugin install:
+
+```
+/plugin marketplace add MtsYama/living-checklist
+/plugin install living-checklist@living-checklist
+```
+
+Then run `/living-checklist:living-checklist`, or just ask your AI *"make me a checklist for X."* It fills the template in for you. Prefer not to use the marketplace? Clone the repo straight into `~/.claude/skills/living-checklist/` instead — [`SKILL.md`](SKILL.md) at the root plus the templates is all the skill is.
 
 **3. Chat-only, no command line.** Open any checklist and click the **"Copy the prompt"** button in the top banner. Paste it into any web AI chat — ChatGPT, Claude, Gemini, whatever you use — and it generates a simple checklist HTML for you. No install, no CLI, nothing to set up.
 
