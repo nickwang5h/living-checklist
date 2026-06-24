@@ -66,6 +66,7 @@
     font-family: var(--font-body);
     font-size: 17px;
     line-height: 1.7;
+    font-weight: 450;
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
     /* R-29 · orphan/widow control */
@@ -235,6 +236,32 @@
   .features .f-text { font-size: 1.08rem; line-height: 1.55; color: var(--fg-2); }
   .features .f-text strong { color: var(--fg); font-weight: 600; }
 
+  /* ---------- features accordion (overflow) ---------- */
+  .features-more { margin-top: -1px; }
+  .features-more > summary {
+    list-style: none; cursor: pointer;
+    font-family: var(--font-mono); font-size: 14px;
+    letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent);
+    padding: 1.05rem 0; border-bottom: 1px solid var(--rule);
+    display: flex; align-items: center; gap: 0.6rem;
+    transition: color 0.16s var(--ease);
+  }
+  .features-more > summary::-webkit-details-marker { display: none; }
+  .features-more > summary::before {
+    content: "+"; font-size: 17px; line-height: 1; color: var(--accent);
+    transition: transform 0.18s var(--ease);
+  }
+  .features-more[open] > summary::before { content: "\2212"; }
+  .features-more > summary:hover { color: var(--fg); }
+  .features-more .features li:first-child { border-top: none; }
+
+  /* ---------- under-the-hood · screenshots subtitle ---------- */
+  .shots-subtitle {
+    font-family: var(--font-mono); font-size: 15px;
+    letter-spacing: 0.08em; text-transform: uppercase; color: var(--fg-3);
+    margin: 0.4rem 0 1.4rem;
+  }
+
   /* ---------- screenshots ---------- */
   .shots {
     display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.2rem;
@@ -258,8 +285,8 @@
   }
   .shot-link:hover::after { opacity: 1; }
   .shot-cap {
-    font-family: var(--font-mono); font-size: 13px;
-    letter-spacing: 0.08em; text-transform: uppercase; color: var(--fg-3);
+    font-family: var(--font-mono); font-size: 14px;
+    letter-spacing: 0.06em; text-transform: uppercase; color: var(--fg-3);
   }
 
   /* ---------- usage cards ---------- */
@@ -345,16 +372,15 @@
     <span class="hero-sub" data-i18n="sub">Step by step HTML</span>
     <p class="hero-lead" data-i18n="lead"></p>
     <div class="hero-actions">
-      <a class="btn btn--filled" href="templates/base.html" data-i18n="ctaTemplate">Try the template</a>
-      <a class="btn" href="examples/europe-japan-trip.html" data-i18n="ctaExample">See a real example</a>
-      <a class="btn" href="https://github.com/MtsYama/living-checklist" data-i18n="ctaRepo">View on GitHub</a>
+      <a target="_blank" rel="noopener" class="btn btn--filled" href="templates/base.html" data-i18n="ctaTemplate">Try the template</a>
+      <a target="_blank" rel="noopener" class="btn" href="https://github.com/MtsYama/living-checklist" data-i18n="ctaRepo">View on GitHub</a>
     </div>
   </section>
 
   <!-- WHO IT'S FOR · upfront positioning -->
   <section class="section">
     <div class="section-head">
-      <span class="section-no">·</span>
+      <span class="section-no">00</span>
       <h2 class="section-title" data-i18n="forWhoTitle"></h2>
     </div>
     <p class="section-lead" data-i18n-html="forWhoLead" style="max-width:64ch;"></p>
@@ -370,42 +396,24 @@
     </div>
   </section>
 
-  <!-- WHAT IT IS -->
+  <!-- WORKED EXAMPLE · value first -->
   <section class="section">
     <div class="section-head">
       <span class="section-no">01</span>
-      <h2 class="section-title" data-i18n="whatTitle"></h2>
+      <h2 class="section-title" data-i18n="exTitle"></h2>
     </div>
-    <p class="section-lead" data-i18n="whatBody"></p>
-    <ul class="features" data-i18n-list="features"></ul>
-  </section>
-
-  <!-- SCREENSHOTS -->
-  <section class="section">
-    <div class="section-head">
-      <span class="section-no">02</span>
-      <h2 class="section-title" data-i18n="shotsTitle"></h2>
-    </div>
-    <div class="shots">
-      <figure class="shot">
-        <a class="shot-link" href="templates/base.html" target="_blank" rel="noopener"><img src="assets/base-light.png" alt="" data-alt="shotBaseAlt" /></a>
-        <figcaption class="shot-cap" data-i18n="shotBase"></figcaption>
-      </figure>
-      <figure class="shot">
-        <a class="shot-link" href="templates/mx-studio.html" target="_blank" rel="noopener"><img src="assets/mx-dark.png" alt="" data-alt="shotMxAlt" /></a>
-        <figcaption class="shot-cap" data-i18n="shotMx"></figcaption>
-      </figure>
-      <figure class="shot">
-        <a class="shot-link" href="examples/europe-japan-trip.html" target="_blank" rel="noopener"><img src="assets/example.png" alt="" data-alt="shotExAlt" /></a>
-        <figcaption class="shot-cap" data-i18n="shotEx"></figcaption>
-      </figure>
+    <p class="section-lead" data-i18n="exLead"></p>
+    <div class="example">
+      <p class="example-quote" data-i18n="exQuote"></p>
+      <p class="example-note" data-i18n="exNote"></p>
+      <a target="_blank" rel="noopener" class="btn btn--filled" href="examples/europe-japan-trip.html" data-i18n="exCta"></a>
     </div>
   </section>
 
   <!-- THREE WAYS -->
   <section class="section">
     <div class="section-head">
-      <span class="section-no">03</span>
+      <span class="section-no">02</span>
       <h2 class="section-title" data-i18n="useTitle"></h2>
     </div>
     <div class="usage">
@@ -427,27 +435,50 @@
     </div>
   </section>
 
-  <!-- WORKED EXAMPLE -->
+  <!-- FEATURES · what makes it alive -->
   <section class="section">
     <div class="section-head">
-      <span class="section-no">04</span>
-      <h2 class="section-title" data-i18n="exTitle"></h2>
+      <span class="section-no">03</span>
+      <h2 class="section-title" data-i18n="featuresTitle"></h2>
     </div>
-    <p class="section-lead" data-i18n="exLead"></p>
-    <div class="example">
-      <p class="example-quote" data-i18n="exQuote"></p>
-      <p class="example-note" data-i18n="exNote"></p>
-      <a class="btn btn--filled" href="examples/europe-japan-trip.html" data-i18n="exCta"></a>
-    </div>
+    <ul class="features" data-i18n-list="features"></ul>
+    <details class="features-more">
+      <summary data-i18n="featuresMore"></summary>
+      <ul class="features" data-i18n-list="featuresExtra"></ul>
+    </details>
   </section>
 
   <!-- ROADMAP -->
   <section class="section">
     <div class="section-head">
-      <span class="section-no">05</span>
+      <span class="section-no">04</span>
       <h2 class="section-title" data-i18n="roadmapTitle"></h2>
     </div>
     <p class="section-lead" data-i18n="roadmapBody"></p>
+  </section>
+
+  <!-- UNDER THE HOOD + SCREENSHOTS · craft proof, last -->
+  <section class="section">
+    <div class="section-head">
+      <span class="section-no">05</span>
+      <h2 class="section-title" data-i18n="whatTitle"></h2>
+    </div>
+    <p class="section-lead" data-i18n="whatBody"></p>
+    <h3 class="shots-subtitle" data-i18n="shotsTitle"></h3>
+    <div class="shots">
+      <figure class="shot">
+        <a class="shot-link" href="templates/base.html" target="_blank" rel="noopener"><img src="assets/base-blue.png" alt="" data-alt="shotBlueAlt" /></a>
+        <figcaption class="shot-cap" data-i18n="shotBlue"></figcaption>
+      </figure>
+      <figure class="shot">
+        <a class="shot-link" href="templates/base-burgundy.html" target="_blank" rel="noopener"><img src="assets/base-burgundy.png" alt="" data-alt="shotBurgundyAlt" /></a>
+        <figcaption class="shot-cap" data-i18n="shotBurgundy"></figcaption>
+      </figure>
+      <figure class="shot">
+        <a class="shot-link" href="templates/mx-studio.html" target="_blank" rel="noopener"><img src="assets/mx-dark.png" alt="" data-alt="shotMxAlt" /></a>
+        <figcaption class="shot-cap" data-i18n="shotMx"></figcaption>
+      </figure>
+    </div>
   </section>
 
 </main>
@@ -455,11 +486,11 @@
 <footer class="footer wrap">
   <span data-i18n="footMade">Built by Mts Yama · MIT License</span>
   <span class="footer-links">
-    <a href="https://github.com/MtsYama/living-checklist/stargazers">⭐ Star</a>
-    <a href="https://github.com/MtsYama/living-checklist">GitHub</a>
-    <a href="https://www.linkedin.com/in/zhengshen-shu/">LinkedIn</a>
-    <a href="https://github.com/MtsYama/living-checklist#readme" data-i18n="footReadme">Readme</a>
-    <a href="https://github.com/MtsYama/living-checklist/blob/main/LICENSE">MIT</a>
+    <a target="_blank" rel="noopener" href="https://github.com/MtsYama/living-checklist/stargazers">⭐ Star</a>
+    <a target="_blank" rel="noopener" href="https://github.com/MtsYama/living-checklist">GitHub</a>
+    <a target="_blank" rel="noopener" href="https://www.linkedin.com/in/zhengshen-shu/">LinkedIn</a>
+    <a target="_blank" rel="noopener" href="https://github.com/MtsYama/living-checklist#readme" data-i18n="footReadme">Readme</a>
+    <a target="_blank" rel="noopener" href="https://github.com/MtsYama/living-checklist/blob/main/LICENSE">MIT</a>
   </span>
 </footer>
 
@@ -473,11 +504,11 @@
       eyebrow: "Open source · single file · MIT",
       title: "Living Checklist",
       sub: "Step by step HTML",
-      lead: "Love making checklists but always find them clunky? They get lost, the checked stuff piles into a mess, and keeping up means scrolling back and forth. This makes a checklist that's actually alive: checked items sink to the bottom, your progress saves itself (close it, reopen it, it's all there), everything is one tap to copy, and you can ask an AI right inside it.",
+      lead: "Love making checklists but always find them clunky? They get lost, the checked stuff piles into a mess, and keeping up means scrolling back and forth. This makes a checklist that's actually alive: your progress saves itself (close it, reopen it, it's all there), everything is one tap to copy, and you can ask an AI right inside it.",
       roadmapTitle: "Now, and what's next",
-      roadmapBody: "Right now the tool itself has no AI inside. You bring your own AI (ChatGPT, Claude, or just fill it by hand) to generate and edit a checklist, and the file makes it come alive: items sink, steps archive, progress saves. What's next: turning it into a standalone app that connects to Notion and other note tools, and stands alongside the classic Google and Microsoft checklist apps. For now it stays free and open source while the core gets solid.",
+      roadmapBody: "Right now the tool itself has no AI inside. You bring your own AI (ChatGPT, Claude, or just fill it by hand) to generate and edit a checklist, and the file makes it come alive: items tuck into a Done group at the top, steps collapse in place, progress saves. What's next: turning it into a standalone app that connects to Notion and other note tools, and stands alongside the classic Google and Microsoft checklist apps. For now it stays free and open source while the core gets solid.",
       forWhoTitle: "What this is, and who it's for",
-      forWhoLead: "It's not a finished app you download. It's a way to <strong>generate a checklist with AI</strong>: tell an AI (ChatGPT, Claude, and the like) what you need, or edit the file yourself, and out comes an HTML checklist you double-click to use. The tool itself has no AI inside; it runs on your own AI to build the checklist.",
+      forWhoLead: "It's not a finished app you download. It's a way to <strong>generate a checklist with AI</strong>: tell an AI (ChatGPT, Claude, and the like) what you need, or edit the file yourself, and out comes an HTML checklist you double-click to use. The tool itself has no AI inside; it runs on your own AI to build the checklist.<br><br>It's closer to a GPS than a to-do list you keep rearranging by hand. We call it <em>living</em> because it re-plans the route around what you need, not because you sort every step yourself. So it's for people who worry they're bad at planning, or always miss a step: tell it what you're doing, and it lays out a path you can just follow.",
       forForTitle: "It's for you if",
       forForBody: "<ul><li>you're already comfortable using AI;</li><li>you like checklists and want AI to spin one up for you often;</li><li>the checklist tools out there don't quite feel right, and you want to try something else.</li></ul>",
       forNotTitle: "Not for you yet if",
@@ -488,21 +519,28 @@
 
       whatTitle: "Under the hood",
       whatBody: "One self-contained .html file. Inline CSS, inline JS, zero dependencies. Double-click it and it opens straight from file:// — no build, no server, no internet. You edit the content, not the engine, and it comes alive.",
+      featuresTitle: "What makes it alive",
+      featuresMore: "More",
       features: [
-        "<strong>Items sink as you check them</strong> — a smooth FLIP animation slides done items to the bottom of their step, so what's left stays on top.",
-        "<strong>Steps file themselves away</strong> — finish a whole step and the card folds and moves into a Done area.",
-        "<strong>Progress bar</strong> tracks completion across every step, with a note box per step.",
-        "<strong>Everything auto-saves</strong> to your browser. Close the tab, reopen it, your checks and notes are right where you left them.",
-        "<strong>Five languages built in</strong> — English, Français, 简体中文, 繁體中文, 日本語, keyed per locale."
+        "<strong>Checked items tuck away</strong> — a smooth FLIP animation folds done items into a collapsible Done group at the top of their step, so what's left stays in view.",
+        "<strong>Finish a step and it folds in place</strong> — the card picks up a ✓ Done badge and collapses right where it sits, no jumping to the bottom of the page.",
+        "<strong>Every item has its own note field</strong> — notes, ideas, or questions all go there, and they ride along when you copy your progress.",
+        "<strong>Progress bar</strong> tracks completion across every step, so you always know how far in you are.",
+        "<strong>Everything auto-saves</strong> to your browser. Close the tab, reopen it, your checks and notes are right where you left them."
+      ],
+      featuresExtra: [
+        "<strong>Nested sub-checklists</strong> — any item can open a sub-checklist one level down, so you can add finer steps as things get discussed.",
+        "<strong>Five languages built in</strong> — English, Français, 简体中文, 繁體中文, 日本語, keyed per locale.",
+        "<strong>Plus the small stuff</strong> — links open in new tabs, a one-time walkthrough on first use, and a toolbar / controls you can collapse out of the way."
       ],
 
-      shotsTitle: "Two skins, one engine",
-      shotBase: "Base template · light",
-      shotMx: "MX Studio template · dark",
-      shotEx: "Worked example",
-      shotBaseAlt: "Base template in light theme — green accent, clean layout",
-      shotMxAlt: "MX Studio template in dark theme — gold accent, editorial serif",
-      shotExAlt: "The Europe and Japan trip example, fully built out",
+      shotsTitle: "Two base colors, a designer skin, one engine",
+      shotBlue: "Lapis · default",
+      shotBurgundy: "Burgundy",
+      shotMx: "MX Studio · dark",
+      shotBlueAlt: "Default base template, Lapis blue — light theme, blue accent, clean layout",
+      shotBurgundyAlt: "Base template in Burgundy — light theme, wine-red accent",
+      shotMxAlt: "MX Studio designer skin — dark theme, gold accent, editorial serif",
 
       useTitle: "Three ways to use it",
       use1Title: "By hand",
@@ -526,11 +564,11 @@
       eyebrow: "Open source · fichier unique · MIT",
       title: "Living Checklist",
       sub: "Step by step HTML",
-      lead: "Vous aimez faire des listes mais elles vous semblent toujours peu pratiques ? On les perd de vue, les éléments cochés s'entassent en désordre, et suivre l'avancement oblige à remonter sans cesse. Celle-ci est vraiment vivante : les éléments cochés descendent en bas, la progression se sauvegarde toute seule (fermez, rouvrez, tout est là), tout se copie en un geste, et vous pouvez interroger une IA directement dedans.",
+      lead: "Vous aimez faire des listes mais elles vous semblent toujours peu pratiques ? On les perd de vue, les éléments cochés s'entassent en désordre, et suivre l'avancement oblige à remonter sans cesse. Celle-ci est vraiment vivante : la progression se sauvegarde toute seule (fermez, rouvrez, tout est là), tout se copie en un geste, et vous pouvez interroger une IA directement dedans.",
       roadmapTitle: "Aujourd'hui, et la suite",
-      roadmapBody: "Pour l'instant, l'outil lui-même n'a aucune IA à l'intérieur. Vous apportez votre propre IA (ChatGPT, Claude, ou vous remplissez à la main) pour générer et modifier une checklist, et le fichier la fait vivre : les éléments coulent, les étapes s'archivent, la progression se sauvegarde. La suite : en faire une application autonome qui se connecte à Notion et aux autres outils de notes, et qui se tient aux côtés des applis de checklist classiques de Google et Microsoft. Pour l'instant, ça reste gratuit et open source, le temps de bien solidifier le cœur.",
+      roadmapBody: "Pour l'instant, l'outil lui-même n'a aucune IA à l'intérieur. Vous apportez votre propre IA (ChatGPT, Claude, ou vous remplissez à la main) pour générer et modifier une checklist, et le fichier la fait vivre : les éléments se rangent dans un groupe Terminé en haut, les étapes se replient sur place, la progression se sauvegarde. La suite : en faire une application autonome qui se connecte à Notion et aux autres outils de notes, et qui se tient aux côtés des applis de checklist classiques de Google et Microsoft. Pour l'instant, ça reste gratuit et open source, le temps de bien solidifier le cœur.",
       forWhoTitle: "Ce que c'est, et à qui ça s'adresse",
-      forWhoLead: "Ce n'est pas une appli finie que vous téléchargez. C'est une façon de <strong>générer une checklist avec l'IA</strong> : décrivez ce qu'il vous faut à une IA (ChatGPT, Claude et compagnie), ou modifiez le fichier vous-même, et il en sort une checklist HTML qu'il suffit de double-cliquer pour utiliser. L'outil lui-même n'a aucune IA à l'intérieur ; il s'appuie sur votre propre IA pour construire la checklist.",
+      forWhoLead: "Ce n'est pas une appli finie que vous téléchargez. C'est une façon de <strong>générer une checklist avec l'IA</strong> : décrivez ce qu'il vous faut à une IA (ChatGPT, Claude et compagnie), ou modifiez le fichier vous-même, et il en sort une checklist HTML qu'il suffit de double-cliquer pour utiliser. L'outil lui-même n'a aucune IA à l'intérieur ; il s'appuie sur votre propre IA pour construire la checklist.<br><br>C'est plus proche d'un GPS que d'une liste de tâches que vous réorganisez sans cesse à la main. On la dit <em>vivante</em> parce qu'elle recalcule l'itinéraire selon vos besoins, pas parce que vous triez chaque étape vous-même. Elle est donc faite pour ceux qui se trouvent mauvais en organisation, ou qui oublient toujours une étape : dites-lui ce que vous faites, et elle vous trace un chemin que vous n'avez plus qu'à suivre.",
       forForTitle: "C'est pour vous si",
       forForBody: "<ul><li>vous êtes déjà à l'aise avec l'IA ;</li><li>vous aimez les checklists et vous voulez que l'IA vous en monte une souvent ;</li><li>les outils de checklist existants ne vous conviennent pas vraiment et vous voulez essayer autre chose.</li></ul>",
       forNotTitle: "Pas encore pour vous si",
@@ -541,21 +579,28 @@
 
       whatTitle: "Sous le capot",
       whatBody: "Un fichier .html autonome. CSS intégré, JS intégré, zéro dépendance. Double-cliquez et il s'ouvre directement depuis file:// — aucun build, aucun serveur, aucune connexion. Vous modifiez le contenu, pas le moteur, et tout prend vie.",
+      featuresTitle: "Ce qui la rend vivante",
+      featuresMore: "Plus",
       features: [
-        "<strong>Les éléments coulent quand vous les cochez</strong> — une animation FLIP fluide glisse les éléments terminés vers le bas de leur étape, ce qui reste demeure en haut.",
-        "<strong>Les étapes se rangent toutes seules</strong> — terminez une étape entière et la carte se replie dans une zone Terminé.",
-        "<strong>Une barre de progression</strong> suit l'avancement de chaque étape, avec une zone de notes par étape.",
-        "<strong>Tout se sauvegarde</strong> dans votre navigateur. Fermez l'onglet, rouvrez-le : vos coches et vos notes sont exactement là où vous les aviez laissées.",
-        "<strong>Cinq langues intégrées</strong> — English, Français, 简体中文, 繁體中文, 日本語, indexées par locale."
+        "<strong>Les éléments cochés se rangent</strong> — une animation FLIP fluide plie les éléments terminés dans un groupe Terminé repliable en haut de leur étape, ce qui reste demeure visible.",
+        "<strong>Terminez une étape et elle se replie sur place</strong> — la carte reçoit un badge ✓ Terminé et se replie là où elle est, sans sauter en bas de la page.",
+        "<strong>Chaque élément a son propre champ de notes</strong> — notes, idées ou questions y vont toutes, et elles vous suivent quand vous copiez votre progression.",
+        "<strong>Une barre de progression</strong> suit l'avancement de chaque étape, pour toujours savoir où vous en êtes.",
+        "<strong>Tout se sauvegarde</strong> dans votre navigateur. Fermez l'onglet, rouvrez-le : vos coches et vos notes sont exactement là où vous les aviez laissées."
+      ],
+      featuresExtra: [
+        "<strong>Sous-checklists imbriquées</strong> — n'importe quel élément peut ouvrir une sous-checklist un niveau plus bas, pour ajouter des étapes plus fines au fil des discussions.",
+        "<strong>Cinq langues intégrées</strong> — English, Français, 简体中文, 繁體中文, 日本語, indexées par locale.",
+        "<strong>Et les petits détails</strong> — les liens s'ouvrent dans un nouvel onglet, un guide ponctuel au premier usage, et une barre d'outils / des contrôles que vous pouvez replier."
       ],
 
-      shotsTitle: "Deux habillages, un seul moteur",
-      shotBase: "Modèle de base · clair",
-      shotMx: "Modèle MX Studio · sombre",
-      shotEx: "Exemple concret",
-      shotBaseAlt: "Modèle de base en thème clair — accent vert, mise en page épurée",
-      shotMxAlt: "Modèle MX Studio en thème sombre — accent doré, serif éditorial",
-      shotExAlt: "L'exemple de voyage Europe et Japon, entièrement construit",
+      shotsTitle: "Deux couleurs de base, un habillage signé, un seul moteur",
+      shotBlue: "Lapis · par défaut",
+      shotBurgundy: "Bordeaux",
+      shotMx: "MX Studio · sombre",
+      shotBlueAlt: "Modèle de base par défaut, bleu lapis — thème clair, accent bleu, mise en page épurée",
+      shotBurgundyAlt: "Modèle de base en bordeaux — thème clair, accent lie-de-vin",
+      shotMxAlt: "Habillage signé MX Studio — thème sombre, accent doré, serif éditorial",
 
       useTitle: "Trois façons de l'utiliser",
       use1Title: "À la main",
@@ -579,11 +624,11 @@
       eyebrow: "开源 · 单文件 · MIT",
       title: "活页清单",
       sub: "Step by step HTML",
-      lead: "喜欢列清单、又老嫌它们不顺手?回头找不着、勾完乱糟糟、想跟进还得来回翻……这个把清单做「活」了：勾掉的自动沉底、进度自动留痕（关了再开还在）、内容随手复制粘贴，有问题还能直接在里面问 AI。",
+      lead: "喜欢列清单、又老嫌它们不顺手?回头找不着、勾完乱糟糟、想跟进还得来回翻……这个把清单做「活」了：进度自动留痕（关了再开还在）、内容随手复制粘贴，有问题还能直接在里面问 AI。",
       roadmapTitle: "现在，和接下来",
-      roadmapBody: "现在这个工具本身不带 AI。你用自己的 AI（ChatGPT、Claude，或者干脆手动）来生成和修改清单，它负责把清单「活」起来:勾选沉底、整步归档、进度自存。接下来:把它做成一个能独立运行的 App，打通 Notion 等笔记工具，也对标 Google、微软那类传统 checklist 软件。现在先免费、开源，把核心打磨扎实。",
+      roadmapBody: "现在这个工具本身不带 AI。你用自己的 AI（ChatGPT、Claude，或者干脆手动）来生成和修改清单，它负责把清单「活」起来:勾掉的收进顶部「已完成」组、整步就地折叠、进度自存。接下来:把它做成一个能独立运行的 App，打通 Notion 等笔记工具，也对标 Google、微软那类传统 checklist 软件。现在先免费、开源，把核心打磨扎实。",
       forWhoTitle: "这到底是什么、给谁用",
-      forWhoLead: "它不是一个下载就能用的成品 App，而是一种<strong>用 AI 生成清单</strong>的方式：你把需求说给 AI（ChatGPT、Claude 这些）、或者自己改一下文件，它就产出一个 HTML 清单，双击就能用。工具本身不带 AI，靠你自己的 AI 来把清单生成出来。",
+      forWhoLead: "它不是一个下载就能用的成品 App，而是一种<strong>用 AI 生成清单</strong>的方式：你把需求说给 AI（ChatGPT、Claude 这些）、或者自己改一下文件，它就产出一个 HTML 清单，双击就能用。工具本身不带 AI，靠你自己的 AI 来把清单生成出来。<br><br>它更像导航，而不是一张你得自己来回挪的待办表。叫它「活」，是因为它能按你的需求把路线重排，不是让你全程手动排。所以它适合那种担心自己不会规划、老漏步骤的人:你说要做什么，它帮你排成一条照着走的路。",
       forForTitle: "适合你，如果",
       forForBody: "<ul><li>你已经习惯用 AI；</li><li>你喜欢用清单，想让 AI 常帮你拉一份；</li><li>觉得现有的清单工具用着不顺手，想试点别的。</li></ul>",
       forNotTitle: "暂时还不适合，如果",
@@ -594,21 +639,28 @@
 
       whatTitle: "底层怎么回事",
       whatBody: "一个自包含的 .html，CSS 和 JS 全内联，零依赖。双击就能从 file:// 直接打开 —— 不用构建、不用服务器、不用联网。你只改内容，不碰引擎，它就活了起来。",
+      featuresTitle: "它「活」在哪",
+      featuresMore: "更多",
       features: [
-        "<strong>勾掉就沉底</strong> —— 用 FLIP 动画把勾完的条目平滑滑到这一步底部，没做的留在上面。",
-        "<strong>整步做完自己归档</strong> —— 一步勾满，卡片就折叠、收进「已完成」区。",
-        "<strong>顶部总进度条</strong>，每一步还配一个备注框。",
-        "<strong>全部自动保存</strong>到浏览器。关掉再打开，勾选和备注都还在原处。",
-        "<strong>内置五种语言</strong> —— English、Français、简体中文、繁體中文、日本語，按 locale 分键。"
+        "<strong>勾掉就收起来</strong> —— 用 FLIP 动画把勾完的条目折进这一步顶部一个可展开的「已完成」组，没做的留在眼前。",
+        "<strong>整步做完就地折叠</strong> —— 这一步带上「✓ 已完成」标记、在原位折起来，不会跳到页面最底下。",
+        "<strong>每一条都有自己的备注框</strong> —— 备注、想法、疑问都写在那,复制进度时一起带走。",
+        "<strong>顶部总进度条</strong>，随时知道做到哪一步了。",
+        "<strong>全部自动保存</strong>到浏览器。关掉再打开，勾选和备注都还在原处。"
+      ],
+      featuresExtra: [
+        "<strong>可嵌套的子清单</strong> —— 任何一条都能再展开一层子清单,随讨论慢慢加更细的步骤。",
+        "<strong>内置五种语言</strong> —— English、Français、简体中文、繁體中文、日本語，按 locale 分键。",
+        "<strong>还有些小细节</strong> —— 链接都开新标签页、第一次用有引导、顶栏和右下角控件都能收起。"
       ],
 
-      shotsTitle: "两套皮肤，同一个引擎",
-      shotBase: "base 模板 · 浅色",
-      shotMx: "MX Studio 模板 · 深色",
-      shotEx: "走通的例子",
-      shotBaseAlt: "浅色主题的 base 模板 —— 绿色点缀，干净排版",
-      shotMxAlt: "深色主题的 MX Studio 模板 —— 金色点缀，编辑风衬线",
-      shotExAlt: "欧洲 + 日本旅行的例子，完整填好的样子",
+      shotsTitle: "两种基础配色 + 一套设计师皮肤，同一个引擎",
+      shotBlue: "黛蓝 · 默认",
+      shotBurgundy: "酒红",
+      shotMx: "MX Studio · 暗金",
+      shotBlueAlt: "默认 base 模板 · 黛蓝 —— 浅色主题，蓝色点缀，干净排版",
+      shotBurgundyAlt: "酒红配色的 base 模板 —— 浅色主题，酒红点缀",
+      shotMxAlt: "MX Studio 设计师皮肤 —— 深色主题，金色点缀，编辑风衬线",
 
       useTitle: "三种用法",
       use1Title: "当人手动用",
@@ -632,11 +684,11 @@
       eyebrow: "開源 · 單檔案 · MIT",
       title: "活頁清單",
       sub: "Step by step HTML",
-      lead: "喜歡列清單、又老嫌它們不順手?回頭找不著、勾完亂糟糟、想跟進還得來回翻……這個把清單做「活」了：勾掉的自動沉底、進度自動留痕（關了再開還在）、內容隨手複製貼上，有問題還能直接在裡面問 AI。",
+      lead: "喜歡列清單、又老嫌它們不順手?回頭找不著、勾完亂糟糟、想跟進還得來回翻……這個把清單做「活」了：進度自動留痕（關了再開還在）、內容隨手複製貼上，有問題還能直接在裡面問 AI。",
       roadmapTitle: "現在，和接下來",
-      roadmapBody: "現在這個工具本身不帶 AI。你用自己的 AI（ChatGPT、Claude，或者乾脆手動）來生成和修改清單，它負責把清單「活」起來:勾選沉底、整步歸檔、進度自存。接下來:把它做成一個能獨立執行的 App，打通 Notion 等筆記工具，也對標 Google、微軟那類傳統 checklist 軟體。現在先免費、開源，把核心打磨扎實。",
+      roadmapBody: "現在這個工具本身不帶 AI。你用自己的 AI（ChatGPT、Claude，或者乾脆手動）來生成和修改清單，它負責把清單「活」起來:勾掉的收進頂部「已完成」組、整步就地摺疊、進度自存。接下來:把它做成一個能獨立執行的 App，打通 Notion 等筆記工具，也對標 Google、微軟那類傳統 checklist 軟體。現在先免費、開源，把核心打磨扎實。",
       forWhoTitle: "這到底是什麼、給誰用",
-      forWhoLead: "它不是一個下載就能用的成品 App，而是一種<strong>用 AI 生成清單</strong>的方式：你把需求說給 AI（ChatGPT、Claude 這些）、或者自己改一下檔案，它就產出一個 HTML 清單，雙擊就能用。工具本身不帶 AI，靠你自己的 AI 來把清單生成出來。",
+      forWhoLead: "它不是一個下載就能用的成品 App，而是一種<strong>用 AI 生成清單</strong>的方式：你把需求說給 AI（ChatGPT、Claude 這些）、或者自己改一下檔案，它就產出一個 HTML 清單，雙擊就能用。工具本身不帶 AI，靠你自己的 AI 來把清單生成出來。<br><br>它更像導航，而不是一張你得自己來回挪的待辦表。叫它「活」，是因為它能按你的需求把路線重排，不是讓你全程手動排。所以它適合那種擔心自己不會規劃、老漏步驟的人:你說要做什麼，它幫你排成一條照著走的路。",
       forForTitle: "適合你，如果",
       forForBody: "<ul><li>你已經習慣用 AI；</li><li>你喜歡用清單，想讓 AI 常幫你拉一份；</li><li>覺得現有的清單工具用著不順手，想試點別的。</li></ul>",
       forNotTitle: "暫時還不適合，如果",
@@ -647,21 +699,28 @@
 
       whatTitle: "底層怎麼回事",
       whatBody: "一個自包含的 .html，CSS 和 JS 全內聯，零依賴。雙擊就能從 file:// 直接打開 —— 不用建置、不用伺服器、不用連網。你只改內容，不碰引擎，它就活了起來。",
+      featuresTitle: "它「活」在哪",
+      featuresMore: "更多",
       features: [
-        "<strong>勾掉就沉底</strong> —— 用 FLIP 動畫把勾完的項目平滑滑到這一步底部，沒做的留在上面。",
-        "<strong>整步做完自己歸檔</strong> —— 一步勾滿，卡片就摺疊、收進「已完成」區。",
-        "<strong>頂部總進度條</strong>，每一步還配一個備註框。",
-        "<strong>全部自動儲存</strong>到瀏覽器。關掉再打開，勾選和備註都還在原處。",
-        "<strong>內建五種語言</strong> —— English、Français、简体中文、繁體中文、日本語，按 locale 分鍵。"
+        "<strong>勾掉就收起來</strong> —— 用 FLIP 動畫把勾完的項目摺進這一步頂部一個可展開的「已完成」組，沒做的留在眼前。",
+        "<strong>整步做完就地摺疊</strong> —— 這一步帶上「✓ 已完成」標記、在原位摺起來，不會跳到頁面最底下。",
+        "<strong>每一條都有自己的備註框</strong> —— 備註、想法、疑問都寫在那,複製進度時一起帶走。",
+        "<strong>頂部總進度條</strong>，隨時知道做到哪一步了。",
+        "<strong>全部自動儲存</strong>到瀏覽器。關掉再打開，勾選和備註都還在原處。"
+      ],
+      featuresExtra: [
+        "<strong>可嵌套的子清單</strong> —— 任何一條都能再展開一層子清單,隨討論慢慢加更細的步驟。",
+        "<strong>內建五種語言</strong> —— English、Français、简体中文、繁體中文、日本語，按 locale 分鍵。",
+        "<strong>還有些小細節</strong> —— 連結都開新分頁、第一次用有引導、頂欄和右下角控件都能收起。"
       ],
 
-      shotsTitle: "兩套皮膚，同一個引擎",
-      shotBase: "base 模板 · 淺色",
-      shotMx: "MX Studio 模板 · 深色",
-      shotEx: "走通的例子",
-      shotBaseAlt: "淺色主題的 base 模板 —— 綠色點綴，乾淨排版",
-      shotMxAlt: "深色主題的 MX Studio 模板 —— 金色點綴，編輯風襯線",
-      shotExAlt: "歐洲 + 日本旅行的例子，完整填好的樣子",
+      shotsTitle: "兩種基礎配色 + 一套設計師皮膚，同一個引擎",
+      shotBlue: "黛藍 · 預設",
+      shotBurgundy: "酒紅",
+      shotMx: "MX Studio · 暗金",
+      shotBlueAlt: "預設 base 模板 · 黛藍 —— 淺色主題，藍色點綴，乾淨排版",
+      shotBurgundyAlt: "酒紅配色的 base 模板 —— 淺色主題，酒紅點綴",
+      shotMxAlt: "MX Studio 設計師皮膚 —— 深色主題，金色點綴，編輯風襯線",
 
       useTitle: "三種用法",
       use1Title: "當人手動用",
@@ -685,11 +744,11 @@
       eyebrow: "オープンソース · 単一ファイル · MIT",
       title: "活页清单",
       sub: "Step by step HTML",
-      lead: "チェックリストは好きだけど、いつも使いにくいと感じませんか?どこにあるか分からなくなる、チェックした項目がごちゃつく、追うのに行ったり来たり。これは本当に「生きた」リストです：チェックした項目は下に沈み、進捗はひとりでに保存され（閉じて開き直してもそのまま）、何でもワンタップでコピーでき、リストの中で直接 AI に質問できます。",
+      lead: "チェックリストは好きだけど、いつも使いにくいと感じませんか?どこにあるか分からなくなる、チェックした項目がごちゃつく、追うのに行ったり来たり。これは本当に「生きた」リストです：進捗はひとりでに保存され（閉じて開き直してもそのまま）、何でもワンタップでコピーでき、リストの中で直接 AI に質問できます。",
       roadmapTitle: "いまと、これから",
-      roadmapBody: "いまのところ、ツール自体に AI は入っていません。あなた自身の AI（ChatGPT、Claude、または手入力でも）でチェックリストを生成・編集し、ファイルがそれを生きたものにします：項目が沈み、ステップが片付き、進捗が保存されます。これから：Notion など他のメモツールとつながる単体のアプリにして、Google や Microsoft の定番チェックリストアプリと並ぶものにしていきます。当面は無料・オープンソースのまま、核をしっかり固めていきます。",
+      roadmapBody: "いまのところ、ツール自体に AI は入っていません。あなた自身の AI（ChatGPT、Claude、または手入力でも）でチェックリストを生成・編集し、ファイルがそれを生きたものにします：項目はステップ上部の「完了」グループにたたまれ、ステップはその場で折りたたまれ、進捗が保存されます。これから：Notion など他のメモツールとつながる単体のアプリにして、Google や Microsoft の定番チェックリストアプリと並ぶものにしていきます。当面は無料・オープンソースのまま、核をしっかり固めていきます。",
       forWhoTitle: "これは何で、誰のためのものか",
-      forWhoLead: "これはダウンロードして使う完成済みのアプリではなく、<strong>AI でチェックリストを生成する</strong>ための仕組みです。必要なものを AI（ChatGPT や Claude など）に伝えるか、自分でファイルを編集すると、ダブルクリックで使える HTML チェックリストが出来上がります。ツール自体に AI は入っておらず、あなた自身の AI を使ってチェックリストを作ります。",
+      forWhoLead: "これはダウンロードして使う完成済みのアプリではなく、<strong>AI でチェックリストを生成する</strong>ための仕組みです。必要なものを AI（ChatGPT や Claude など）に伝えるか、自分でファイルを編集すると、ダブルクリックで使える HTML チェックリストが出来上がります。ツール自体に AI は入っておらず、あなた自身の AI を使ってチェックリストを作ります。<br><br>手作業で並べ替え続ける ToDo リストというより、カーナビに近いものです。「生きている」と呼ぶのは、あなたの必要に合わせてルートを組み直してくれるからで、すべての手順を自分で並べるからではありません。だから、自分は計画が苦手だと思っている人や、いつも手順を抜かしてしまう人に向いています：やりたいことを伝えれば、あとはたどるだけの道筋を引いてくれます。",
       forForTitle: "向いているのは",
       forForBody: "<ul><li>すでに AI を使い慣れている人；</li><li>チェックリストが好きで、AI によく一つ作ってほしい人；</li><li>今あるチェックリストツールがしっくりこず、別のものを試したい人。</li></ul>",
       forNotTitle: "まだ向いていないのは",
@@ -700,21 +759,28 @@
 
       whatTitle: "仕組みの中身",
       whatBody: "それ自体で完結した 1 つの .html。CSS も JS もインライン、依存ゼロ。ダブルクリックすれば file:// から直接開きます —— ビルドなし、サーバーなし、インターネットも不要。編集するのはコンテンツだけ、エンジンには触れず、それは命を持ちます。",
+      featuresTitle: "どこが「生きている」のか",
+      featuresMore: "もっと見る",
       features: [
-        "<strong>チェックすると項目が沈む</strong> —— なめらかな FLIP アニメーションで完了した項目をそのステップの一番下へ移し、残りが上に保たれます。",
-        "<strong>ステップが自分で片付く</strong> —— 1 つのステップを終えるとカードがたたまれ「完了」エリアへ移動します。",
-        "<strong>進捗バー</strong>が全ステップの進み具合を追い、ステップごとにメモ欄が付きます。",
-        "<strong>すべて自動保存</strong>。タブを閉じて開き直しても、チェックもメモも離れたときのままです。",
-        "<strong>5 言語を内蔵</strong> —— English、Français、简体中文、繁體中文、日本語、ロケールごとにキー分け。"
+        "<strong>チェックした項目はたたまれる</strong> —— なめらかな FLIP アニメーションで、完了した項目をそのステップ上部の折りたためる「完了」グループにしまい、残りが見えたままになります。",
+        "<strong>ステップを終えるとその場で折りたたまれる</strong> —— カードに「✓ 完了」バッジが付き、その位置で折りたたまれます。ページ下部へ飛んだりしません。",
+        "<strong>項目ごとに自分のメモ欄</strong> —— メモも、思いつきも、疑問もそこに書け、進捗をコピーすると一緒について来ます。",
+        "<strong>進捗バー</strong>が全ステップの進み具合を追い、どこまで進んだかいつでも分かります。",
+        "<strong>すべて自動保存</strong>。タブを閉じて開き直しても、チェックもメモも離れたときのままです。"
+      ],
+      featuresExtra: [
+        "<strong>入れ子のサブチェックリスト</strong> —— どの項目も一段下のサブチェックリストを開けるので、話が進むにつれて細かい手順を足していけます。",
+        "<strong>5 言語を内蔵</strong> —— English、Français、简体中文、繁體中文、日本語、ロケールごとにキー分け。",
+        "<strong>そして細かなところも</strong> —— リンクは新しいタブで開き、初回には一度きりのガイド、ツールバーや各種コントロールはたたんで隠せます。"
       ],
 
-      shotsTitle: "2 つのスキン、1 つのエンジン",
-      shotBase: "ベーステンプレート · ライト",
-      shotMx: "MX Studio テンプレート · ダーク",
-      shotEx: "実例",
-      shotBaseAlt: "ライトテーマのベーステンプレート —— グリーンのアクセント、すっきりしたレイアウト",
-      shotMxAlt: "ダークテーマの MX Studio テンプレート —— ゴールドのアクセント、エディトリアルなセリフ",
-      shotExAlt: "ヨーロッパ + 日本の旅行の実例、完成した状態",
+      shotsTitle: "2 色のベース + デザイナースキン、1 つのエンジン",
+      shotBlue: "ラピス · 既定",
+      shotBurgundy: "バーガンディ",
+      shotMx: "MX Studio · ダーク",
+      shotBlueAlt: "既定のベーステンプレート、ラピスブルー —— ライトテーマ、ブルーのアクセント、すっきりしたレイアウト",
+      shotBurgundyAlt: "バーガンディのベーステンプレート —— ライトテーマ、ワインレッドのアクセント",
+      shotMxAlt: "MX Studio デザイナースキン —— ダークテーマ、ゴールドのアクセント、エディトリアルなセリフ",
 
       useTitle: "3 つの使い方",
       use1Title: "手で使う",
@@ -765,7 +831,7 @@
       var items = c[key];
       if (!Array.isArray(items)) return;
       el.innerHTML = items.map(function (txt) {
-        return '<li><span class="f-mark" aria-hidden="true">+</span>' +
+        return '<li><span class="f-mark" aria-hidden="true">—</span>' +
                '<span class="f-text">' + txt + "</span></li>";
       }).join("");
     });
