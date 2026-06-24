@@ -39,7 +39,7 @@ Vous ne modifiez pas de code pour l'utiliser. Vous modifiez le *contenu* (une pe
 
 | Modèle de base (clair) | Modèle MX Studio (sombre) | Exemple concret |
 |---|---|---|
-| ![Modèle de base, thème clair](assets/base-light.png) | ![Modèle MX Studio, thème sombre](assets/mx-dark.png) | ![Exemple de voyage Europe + Japon](assets/example.png) |
+| ![Modèle de base, thème clair](assets/base-fr.png) | ![Modèle MX Studio, thème sombre](assets/mx-fr.png) | ![Exemple de voyage Europe + Japon](assets/example-fr.png) |
 
 Le modèle par défaut est livré en deux couleurs nettes — **Lapis blue** (par défaut) et **Burgundy** — plus l'habillage sombre de créateur **MX Studio**.
 

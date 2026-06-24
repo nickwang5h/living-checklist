@@ -33,7 +33,7 @@
 
 **適合誰。** 已經習慣用 AI、喜歡用清單、想讓 AI 常幫你拉一份的人；或者覺得現有清單工具用著不太順手、想試點別的的人。暫時還不適合想要一個裝上就能用、且開箱即對接 Notion 的成品 app 的人。
 
-![base 模板，淺色](assets/base-light.png)
+![base 模板，淺色](assets/base-zh-Hant.png)
 
 ## 這是什麼
 
@@ -66,7 +66,7 @@
 | `base-burgundy.html` | 同一套乾淨預設模板，換成暖調的酒紅點綴。 | 自動 |
 | `mx-studio.html` | 深色 noir + 金色，襯線字型（Cormorant Garamond + Alegreya + 霞鶩文楷 + IBM Plex Mono），大號 folio 步驟編號，Phosphor 圖示。 | 深色 |
 
-![mx-studio 模板，深色](assets/mx-dark.png)
+![mx-studio 模板，深色](assets/mx-zh-Hant.png)
 
 ## 三種用法
 
@@ -101,7 +101,7 @@
 
 這個例子也展示了「按上下文產生」：2 張已經訂好的機票預先勾上，身分資訊預先填好（範例 John Doe），不確定的欄位留成提示性的佔位符。
 
-![旅行例子](assets/example.png)
+![旅行例子](assets/example-zh-Hant.png)
 
 ## 倉庫結構
 

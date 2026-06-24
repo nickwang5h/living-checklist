@@ -39,7 +39,7 @@ You don't edit code to use it. You edit the *content* (a small DATA + CONFIG sec
 
 | Base template (light) | MX Studio template (dark) | Worked example |
 |---|---|---|
-| ![Base template, light theme](assets/base-light.png) | ![MX Studio template, dark theme](assets/mx-dark.png) | ![Europe + Japan trip example](assets/example.png) |
+| ![Base template, light theme](assets/base-en.png) | ![MX Studio template, dark theme](assets/mx-en.png) | ![Europe + Japan trip example](assets/example-en.png) |
 
 The default template ships in two clean colors — **Lapis blue** (default) and **Burgundy** — plus the **MX Studio** dark designer skin.
 
