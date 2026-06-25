@@ -194,6 +194,32 @@
     transition: all 0.16s var(--ease);
   }
   .theme-btn:hover { border-color: var(--accent); color: var(--fg); }
+  /* grouped control rows — inline on desktop, stacked on narrow */
+  .tb-row { display: flex; align-items: center; gap: 0.6rem; flex-wrap: wrap; }
+  /* quick-access icon cluster on the wordmark line — narrow screens only */
+  .tb-quick { display: none; gap: 6px; align-items: center; }
+  .tb-icon {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 38px; height: 38px;
+    border: 1px solid var(--rule-strong); background: transparent; color: var(--fg-2);
+    cursor: pointer; border-radius: var(--radius);
+  }
+  .tb-icon svg { width: 18px; height: 18px; fill: currentColor; }
+  .tb-icon:hover { border-color: var(--accent); color: var(--fg); }
+  [data-skin="mx"] .tb-icon { border-radius: 0; }
+  .tb-toggle svg { transform: rotate(180deg); transition: transform 0.2s var(--ease); }
+  @media (max-width: 640px) {
+    .topbar-inner { row-gap: 0; }
+    .topbar-label:not(.lang-label) { flex: 1 1 auto; }
+    .tb-quick { display: inline-flex; }
+    .topbar-right {
+      flex-basis: 100%; flex-direction: column; align-items: flex-start;
+      gap: 0.7rem; overflow: hidden; max-height: 320px; padding-top: 0.7rem;
+      transition: max-height 0.3s var(--ease), padding 0.3s var(--ease);
+    }
+    .topbar.controls-collapsed .topbar-right { max-height: 0; padding-top: 0; }
+    .topbar.controls-collapsed .tb-toggle svg { transform: rotate(0deg); }
+  }
   .theme-btn .theme-ico { display: inline-flex; align-items: center; line-height: 1; }
   .theme-btn .theme-ico svg { width: 1em; height: 1em; fill: currentColor; }
 
@@ -433,7 +459,7 @@
   }
   .usage-feature { grid-row: 1 / span 2; }
   @media (max-width: 720px) {
-    .usage { grid-template-columns: minmax(0, 1fr); }
+    .usage { grid-template-columns: minmax(0, 1fr); grid-auto-rows: auto; }
     .usage-feature { grid-row: auto; }
   }
   .usage-card {
@@ -494,7 +520,7 @@
   /* ---------- footer ---------- */
   .footer {
     border-top: 1px solid var(--rule); margin-top: 1rem;
-    padding: 2.2rem 0 3rem;
+    padding: 2.2rem clamp(1.3rem, 5vw, 2.6rem) 3rem;
     display: flex; justify-content: space-between; flex-wrap: wrap; gap: 1rem;
     font-family: var(--font-mono); font-size: 14px;
     letter-spacing: 0.04em; color: var(--fg-3);
@@ -781,7 +807,13 @@
 <header class="topbar">
   <div class="topbar-inner">
     <span class="topbar-label">Living&nbsp;Checklist</span>
-    <div class="topbar-right">
+    <div class="tb-quick">
+      <button type="button" id="tbLang" class="tb-icon" aria-label="Language" title="Language"><svg viewBox="0 0 256 256" aria-hidden="true"><path d="M247.15,212.42l-56-112a8,8,0,0,0-14.31,0l-21.71,43.43A88,88,0,0,1,108,126.93,103.65,103.65,0,0,0,135.69,64H160a8,8,0,0,0,0-16H104V32a8,8,0,0,0-16,0V48H32a8,8,0,0,0,0,16h87.63A87.76,87.76,0,0,1,96,116.35a87.74,87.74,0,0,1-19-31,8,8,0,1,0-15.08,5.34A103.63,103.63,0,0,0,84,127a87.55,87.55,0,0,1-52,17,8,8,0,0,0,0,16,103.46,103.46,0,0,0,64-22.08,104.18,104.18,0,0,0,51.44,21.31l-26.6,53.19a8,8,0,0,0,14.31,7.16L148.94,192h70.11l13.79,27.58A8,8,0,0,0,240,224a8,8,0,0,0,7.15-11.58ZM156.94,176,184,121.89,211.05,176Z"/></svg></button>
+      <button type="button" id="tbSkinQuick" class="tb-icon" aria-label="Switch visual style" title="Style"><svg viewBox="0 0 256 256" aria-hidden="true"><path d="M200.77,53.89A103.27,103.27,0,0,0,128,24h-1.07A104,104,0,0,0,24,128c0,43,26.58,79.06,69.36,94.17A32,32,0,0,0,136,192a16,16,0,0,1,16-16h46.21a31.81,31.81,0,0,0,31.2-24.88,104.43,104.43,0,0,0,2.59-24A103.28,103.28,0,0,0,200.77,53.89ZM84,168a12,12,0,1,1,12-12A12,12,0,0,1,84,168ZM84,116a12,12,0,1,1,12-12A12,12,0,0,1,84,116Zm44-24a12,12,0,1,1,12-12A12,12,0,0,1,128,92Zm44,24a12,12,0,1,1,12-12A12,12,0,0,1,172,116Z"/></svg></button>
+      <button type="button" id="tbToggle" class="tb-icon tb-toggle" aria-expanded="true" aria-controls="topbarControls" aria-label="Show or hide controls"><svg viewBox="0 0 256 256" aria-hidden="true"><path d="M213.66,101.66l-80,80a8,8,0,0,1-11.32,0l-80-80A8,8,0,0,1,53.66,90.34L128,164.69l74.34-74.35a8,8,0,0,1,11.32,11.32Z"/></svg></button>
+    </div>
+    <div class="topbar-right" id="topbarControls">
+      <div class="tb-row tb-lang">
       <span class="topbar-label lang-label" aria-hidden="true"><span class="lang-globe"><svg viewBox="0 0 256 256" aria-hidden="true"><path d="M247.15,212.42l-56-112a8,8,0,0,0-14.31,0l-21.71,43.43A88,88,0,0,1,108,126.93,103.65,103.65,0,0,0,135.69,64H160a8,8,0,0,0,0-16H104V32a8,8,0,0,0-16,0V48H32a8,8,0,0,0,0,16h87.63A87.76,87.76,0,0,1,96,116.35a87.74,87.74,0,0,1-19-31,8,8,0,1,0-15.08,5.34A103.63,103.63,0,0,0,84,127a87.55,87.55,0,0,1-52,17,8,8,0,0,0,0,16,103.46,103.46,0,0,0,64-22.08,104.18,104.18,0,0,0,51.44,21.31l-26.6,53.19a8,8,0,0,0,14.31,7.16L148.94,192h70.11l13.79,27.58A8,8,0,0,0,240,224a8,8,0,0,0,7.15-11.58ZM156.94,176,184,121.89,211.05,176Z"/></svg></span><span data-i18n="langLabel">Language</span></span>
       <div class="toggle" role="group" aria-label="Language / 语言">
         <button type="button" data-lang="en" aria-pressed="true">EN</button>
@@ -790,7 +822,10 @@
         <button type="button" data-lang="zh-Hant" aria-pressed="false">繁</button>
         <button type="button" data-lang="ja" aria-pressed="false">日</button>
       </div>
+      </div>
+      <div class="tb-row tb-controls">
       <button type="button" id="themeBtn" class="theme-btn" aria-label="Theme: Auto / Light / Dark"><span class="theme-ico"><svg viewBox="0 0 256 256" aria-hidden="true"><path d="M128,24A104,104,0,1,0,232,128,104.11,104.11,0,0,0,128,24Zm8,16.37a86.4,86.4,0,0,1,16,3V212.67a86.4,86.4,0,0,1-16,3Zm32,9.26a87.81,87.81,0,0,1,16,10.54V195.83a87.81,87.81,0,0,1-16,10.54ZM40,128a88.11,88.11,0,0,1,80-87.63V215.63A88.11,88.11,0,0,1,40,128Zm160,50.54V77.46a87.82,87.82,0,0,1,0,101.08Z"/></svg></span><span class="theme-txt">Auto</span></button><button type="button" id="skinBtn" class="theme-btn" aria-label="Switch visual style" title="Switch visual style"><span class="theme-ico"><svg viewBox="0 0 256 256" aria-hidden="true"><path d="M200.77,53.89A103.27,103.27,0,0,0,128,24h-1.07A104,104,0,0,0,24,128c0,43,26.58,79.06,69.36,94.17A32,32,0,0,0,136,192a16,16,0,0,1,16-16h46.21a31.81,31.81,0,0,0,31.2-24.88,104.43,104.43,0,0,0,2.59-24A103.28,103.28,0,0,0,200.77,53.89ZM84,168a12,12,0,1,1,12-12A12,12,0,0,1,84,168ZM84,116a12,12,0,1,1,12-12A12,12,0,0,1,84,116Zm44-24a12,12,0,1,1,12-12A12,12,0,0,1,128,92Zm44,24a12,12,0,1,1,12-12A12,12,0,0,1,172,116Z"/></svg></span><span class="skin-txt">Base</span></button>
+      </div>
     </div>
   </div>
 </header>
@@ -1560,6 +1595,25 @@
     if (btn) btn.addEventListener("click", function () {
       var s = btn.getAttribute("data-skin-mode") || "base";
       apply(skins[(skins.indexOf(s) + 1) % skins.length]);
+    });
+  })();
+
+  // mobile topbar accordion + quick icons
+  (function () {
+    var btn = document.getElementById("tbToggle");
+    var tb = document.querySelector(".topbar");
+    if (btn && tb) btn.addEventListener("click", function () {
+      var collapsed = tb.classList.toggle("controls-collapsed");
+      btn.setAttribute("aria-expanded", String(!collapsed));
+    });
+    var langQ = document.getElementById("tbLang");
+    if (langQ && tb) langQ.addEventListener("click", function () {
+      tb.classList.remove("controls-collapsed");
+      if (btn) btn.setAttribute("aria-expanded", "true");
+    });
+    var skinQ = document.getElementById("tbSkinQuick");
+    if (skinQ) skinQ.addEventListener("click", function () {
+      var sb = document.getElementById("skinBtn"); if (sb) sb.click();
     });
   })();
 
