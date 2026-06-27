@@ -129,7 +129,7 @@
     color: var(--fg);
     transition: background 0.25s var(--ease), color 0.25s var(--ease);
     font-family: var(--font-body);
-    font-size: 18px;
+    font-size: 17px;
     line-height: 1.7;
     font-weight: 450;
     -webkit-font-smoothing: antialiased;
@@ -290,7 +290,7 @@
     text-wrap: balance;
   }
   .section-lead {
-    font-size: clamp(1.14rem, 2vw, 1.3rem);
+    font-size: clamp(1.08rem, 2vw, 1.25rem);
     line-height: 1.62; color: var(--fg-2); max-width: 60ch;
     margin-bottom: 2.2rem;
   }
@@ -308,7 +308,7 @@
     font-family: var(--font-mono); font-size: 15px;
     color: var(--accent); font-variant-numeric: tabular-nums;
   }
-  .features .f-text { font-size: 1.14rem; line-height: 1.55; color: var(--fg-2); }
+  .features .f-text { font-size: 1.08rem; line-height: 1.55; color: var(--fg-2); }
   .features .f-text strong { color: var(--fg); font-weight: 600; }
 
   /* ---------- features accordion (overflow) ---------- */
@@ -361,7 +361,7 @@
     font-family: var(--font-display);
     color: var(--fg); text-wrap: balance; margin-bottom: 0.7rem;
   }
-  .rm-note { font-size: 1.14rem; line-height: 1.55; color: var(--fg-2); }
+  .rm-note { font-size: 1.02rem; line-height: 1.55; color: var(--fg-2); }
   .rm-note strong { color: var(--fg); font-weight: 600; }
   .rm-list { list-style: none; margin-top: 1.4rem; }
   .rm-list li {
@@ -377,13 +377,13 @@
   }
   .rm-list .rm-exp {
     display: block;
-    font-size: 1.14rem; line-height: 1.55; color: var(--fg-2);
+    font-size: 1rem; line-height: 1.55; color: var(--fg-2);
     margin-top: 0.3rem;
   }
   .rm-list .rm-exp em { font-style: italic; color: var(--fg-3); }
   .rm-promise {
     margin-top: 1.6rem; padding-top: 1.2rem; border-top: 1px solid var(--rule);
-    font-size: 1.14rem; line-height: 1.55; color: var(--fg-2);
+    font-size: 1.02rem; line-height: 1.55; color: var(--fg-2);
   }
   .rm-promise strong { color: var(--accent); font-weight: 600; }
 
@@ -483,7 +483,7 @@
     font-family: var(--font-display);
     color: var(--fg);
   }
-  .usage-body { font-size: 1.14rem; line-height: 1.55; color: var(--fg-2); }
+  .usage-body { font-size: 1.02rem; line-height: 1.55; color: var(--fg-2); }
   .usage-body code {
     font-family: var(--font-mono); font-size: 0.88em;
     color: var(--accent);
@@ -806,203 +806,13 @@
   [data-skin="base"] .footer a { letter-spacing: 0.01em; }
   [data-skin="mx"] .footer a { text-transform: uppercase; letter-spacing: 0.06em; }
 
-  /* =========================================================
-     EXAMPLE-FIRST HERO — transformation block (variant only)
-     Lead with the before -> after moment. Consumes the SAME
-     design tokens, so it tracks both skins + all themes.
-     ========================================================= */
-  .hero--transform { padding-bottom: clamp(2.2rem, 5vw, 3.4rem); }
-  .hero-kicker {
-    display: block;
-    font-family: var(--font-mono);
-    font-size: clamp(17px, 2.1vw, 20px); letter-spacing: 0.12em; text-transform: uppercase; font-weight: 500;
-    color: var(--accent);
-    margin-bottom: 1.1rem;
-  }
-  .hero-title--hook { max-width: 26ch; }
-  .hero--transform .hero-lead { max-width: 58ch; margin-top: 1.4rem; }
-  .hero-honest { max-width: 60ch; margin-top: 1.1rem; font-size: 0.95rem; line-height: 1.55;
-    color: var(--fg-3); padding: 0.7rem 1rem; border: 1px solid var(--rule); border-radius: var(--radius); background: var(--card); }
-  .hero-honest strong { color: var(--fg-2); font-weight: 600; }
-  .hero-honest a { color: var(--accent); white-space: nowrap; }
-
-  /* the two-column transformation: messy quote -> organized result */
-  .transform {
-    margin-top: clamp(2.2rem, 4.5vw, 3rem);
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) auto minmax(0, 1.05fr);
-    align-items: center;
-    gap: clamp(1rem, 2.6vw, 1.9rem);
-  }
-  @media (max-width: 760px) {
-    .transform { grid-template-columns: minmax(0, 1fr); }
-  }
-  .transform-col { display: flex; flex-direction: column; gap: 0.8rem; min-width: 0; }
-
-  .transform-label {
-    font-family: var(--font-mono);
-    font-size: 13px; letter-spacing: 0.1em; text-transform: uppercase;
-    color: var(--fg-3);
-  }
-  .transform-cue {
-    display: inline-flex; align-items: center; gap: 0.5rem;
-  }
-  .transform-cue svg { width: 16px; height: 16px; fill: var(--accent); flex: none; }
-
-  /* LEFT — the run-on, dictated request */
-  .transform-quote {
-    font-style: normal;
-    font-size: 1.2rem; line-height: 1.62; color: var(--fg-2);
-    padding: clamp(1.1rem, 2.5vw, 1.5rem);
-    border: 1px solid var(--rule);
-    border-left: 3px solid var(--rule-strong);
-    border-radius: var(--radius);
-    background: var(--card);
-  }
-  .transform-quote::before { content: "\201C"; color: var(--accent); margin-right: 0.05em; }
-  .transform-quote::after  { content: "\201D"; color: var(--accent); margin-left: 0.05em; }
-  [data-skin="mx"] .transform-quote { font-style: italic; border-left-color: var(--accent); }
-
-  /* MIDDLE — the arrow + label */
-  .transform-arrow {
-    display: flex; flex-direction: column; align-items: center; gap: 0.45rem;
-    padding: 0.4rem 0;
-  }
-  .transform-arrow svg { width: 36px; height: 36px; fill: var(--accent); }
-  .transform-arrow-label {
-    font-family: var(--font-mono); font-size: 12px;
-    letter-spacing: 0.1em; text-transform: uppercase; color: var(--fg-3);
-  }
-  @media (max-width: 760px) {
-    .transform-arrow svg { transform: rotate(90deg); }
-  }
-
-  /* RIGHT — the organized, checkable result (worked-example screenshot) */
-  .transform-shot {
-    display: block; position: relative;
-    border-radius: var(--radius);
-  }
-  .transform-shot img {
-    width: 100%; height: auto; display: block;
-    border: 1px solid var(--rule-strong);
-    border-radius: var(--radius);
-    background: var(--bg);
-    transition: border-color 0.16s var(--ease), transform 0.16s var(--ease);
-  }
-  .transform-shot:hover img { border-color: var(--accent); transform: translateY(-2px); }
-  .transform-shot::after {
-    content: "\2197"; position: absolute; top: 12px; right: 12px;
-    font-family: var(--font-mono); font-size: 13px; line-height: 1;
-    color: var(--on-accent); background: var(--accent-fill); padding: 5px 7px;
-    opacity: 0.9; transition: opacity 0.16s var(--ease);
-  }
-  .transform-shot:hover::after { opacity: 1; }
-  .transform-note { font-size: 1.14rem; line-height: 1.55; color: var(--fg-2); }
-  .transform-desc { font-size: 1.02rem; line-height: 1.62; color: var(--fg-2); margin: 0.2rem 0 0; }
-
-  .howto {
-    padding: clamp(2.6rem, 6vw, 3.8rem) 0 clamp(2rem, 4vw, 2.8rem);
-    border-top: 1px solid var(--rule);
-  }
-  .howto-kicker {
-    font-family: var(--font-mono); font-size: 14px;
-    letter-spacing: 0.1em; text-transform: uppercase;
-    color: var(--accent); margin-bottom: 1.6rem;
-  }
-  .howto-steps {
-    --howto-gap: clamp(1rem, 2.6vw, 1.6rem);
-    list-style: none;
-    display: grid; grid-template-columns: repeat(3, 1fr);
-    gap: var(--howto-gap); align-items: stretch;
-    counter-reset: howto;
-  }
-  @media (max-width: 720px) { .howto-steps { grid-template-columns: 1fr; } }
-  .howto-step {
-    position: relative;
-    display: flex; flex-direction: column; gap: 0.75rem;
-    padding: 1.6rem 1.5rem;
-  }
-  .howto-num {
-    display: inline-flex; align-items: center; justify-content: center;
-    width: 44px; height: 44px;
-    font-family: var(--font-mono); font-weight: 500;
-    font-size: 19px; line-height: 1;
-    color: var(--on-accent); background: var(--accent-fill);
-    border-radius: var(--radius);
-    font-variant-numeric: tabular-nums;
-  }
-  .howto-title {
-    font-family: var(--font-display);
-    color: var(--fg); text-wrap: balance;
-  }
-  .howto-cap {
-    font-size: 1.15rem; line-height: 1.55; color: var(--fg-2);
-  }
-  .howto-cap code {
-    font-family: var(--font-mono); font-size: 0.85em;
-    color: var(--accent); padding: 0.1em 0.35em;
-  }
-  /* desktop-only flow connectors between the 3 cards */
-  @media (min-width: 721px) {
-    .howto-step:not(:last-child)::after {
-      content: "\2192"; /* → */
-      position: absolute; top: 50%; left: 100%;
-      margin-left: calc(var(--howto-gap) / 2);
-      transform: translate(-50%, -50%);
-      font-family: var(--font-mono); font-size: 1.25rem; line-height: 1;
-      color: var(--fg-3); pointer-events: none;
-    }
-  }
-  .howto-demo-label {
-    margin: clamp(2rem, 4vw, 2.6rem) 0 0.9rem;
-    font-family: var(--font-mono); font-size: 14px;
-    letter-spacing: 0.08em; text-transform: uppercase; color: var(--fg-3);
-  }
-  .howto-demo-label strong { color: var(--accent); font-weight: 600; }
-  /* ---- .howto-step (frame + ground), .howto-num (radius), .howto-title ---- */
-  [data-skin="base"] .howto-step {
-    border: 1px solid var(--rule);
-    border-radius: var(--radius);
-    background: var(--card);
-    box-shadow: 0 1px 2px rgba(27, 32, 36, 0.05);
-  }
-  [data-skin="mx"] .howto-step {
-    border: 1px solid var(--rule-strong);
-    background: var(--rule-soft);
-  }
-  [data-skin="mx"] .howto-num { border-radius: 0; }
-  [data-skin="base"] .howto-title {
-    font-weight: 700;
-    font-size: 1.22rem; line-height: 1.3;
-    letter-spacing: -0.01em;
-  }
-  [data-skin="mx"] .howto-title {
-    font-weight: 500;
-    font-size: 1.42rem; line-height: 1.25;
-  }
-  html[data-skin="mx"][lang="en"] .howto-title,
-  html[data-skin="mx"][lang="fr"] .howto-title {
-    text-transform: uppercase; letter-spacing: 0.01em;
-  }
-
-  /* ---- closing CTA band ---- */
-  .closing {
-    padding: clamp(3rem, 7vw, 4.6rem) 0 clamp(2.4rem, 5vw, 3.4rem);
-    border-top: 1px solid var(--rule);
-    text-align: center;
-  }
-  .closing-title { font-family: var(--font-display); color: var(--fg); margin-bottom: 0.6rem; text-wrap: balance; }
-  .closing-sub { font-size: 1.15rem; line-height: 1.55; color: var(--fg-2); max-width: 52ch; margin: 0 auto 1.8rem; }
-  .closing .hero-actions { display: flex; flex-wrap: wrap; gap: 0.9rem; justify-content: center; }
-  [data-skin="base"] .closing-title { font-weight: 700; }
-
 </style>
 </head>
 <body>
 
 <header class="topbar">
   <div class="topbar-inner">
-    <span class="topbar-label">Living&nbsp;Checklist</span>
+    <a href="index.html" class="topbar-label" style="text-decoration:none">Living&nbsp;Checklist</a>
     <div class="tb-quick">
       <button type="button" id="tbLang" class="tb-icon" aria-label="Language" title="Language"><svg viewBox="0 0 256 256" aria-hidden="true"><path d="M247.15,212.42l-56-112a8,8,0,0,0-14.31,0l-21.71,43.43A88,88,0,0,1,108,126.93,103.65,103.65,0,0,0,135.69,64H160a8,8,0,0,0,0-16H104V32a8,8,0,0,0-16,0V48H32a8,8,0,0,0,0,16h87.63A87.76,87.76,0,0,1,96,116.35a87.74,87.74,0,0,1-19-31,8,8,0,1,0-15.08,5.34A103.63,103.63,0,0,0,84,127a87.55,87.55,0,0,1-52,17,8,8,0,0,0,0,16,103.46,103.46,0,0,0,64-22.08,104.18,104.18,0,0,0,51.44,21.31l-26.6,53.19a8,8,0,0,0,14.31,7.16L148.94,192h70.11l13.79,27.58A8,8,0,0,0,240,224a8,8,0,0,0,7.15-11.58ZM156.94,176,184,121.89,211.05,176Z"/></svg></button>
       <button type="button" id="tbSkinQuick" class="tb-icon" aria-label="Switch visual style" title="Style"><svg viewBox="0 0 256 256" aria-hidden="true"><path d="M200.77,53.89A103.27,103.27,0,0,0,128,24h-1.07A104,104,0,0,0,24,128c0,43,26.58,79.06,69.36,94.17A32,32,0,0,0,136,192a16,16,0,0,1,16-16h46.21a31.81,31.81,0,0,0,31.2-24.88,104.43,104.43,0,0,0,2.59-24A103.28,103.28,0,0,0,200.77,53.89ZM84,168a12,12,0,1,1,12-12A12,12,0,0,1,84,168ZM84,116a12,12,0,1,1,12-12A12,12,0,0,1,84,116Zm44-24a12,12,0,1,1,12-12A12,12,0,0,1,128,92Zm44,24a12,12,0,1,1,12-12A12,12,0,0,1,172,116Z"/></svg></button>
@@ -1028,50 +838,11 @@
 
 <main class="wrap">
 
-  <!-- HERO · EXAMPLE-FIRST transformation: messy run-on -> a plan you can check off -->
-  <section class="hero hero--transform">
-    <span class="hero-kicker"><span data-i18n="title">Living Checklist</span> · <span data-i18n="sub">The Step-by-Step HTML</span></span>
-    <h1 class="hero-title hero-title--hook" data-i18n="exTitle">From messy input to a plan</h1>
-    <p class="hero-lead" data-i18n="heroGeneric"></p>
-    <p class="hero-honest" data-i18n-html="heroHonest"></p>
-
-    <div class="transform">
-      <!-- LEFT: the run-on, dictated request -->
-      <figure class="transform-col transform-from">
-        <span class="transform-cue">
-          <svg viewBox="0 0 256 256" aria-hidden="true"><path d="M128,176a48.05,48.05,0,0,0,48-48V64a48,48,0,0,0-96,0v64A48.05,48.05,0,0,0,128,176ZM96,64a32,32,0,0,1,64,0v64a32,32,0,0,1-64,0Zm40,143.6V232a8,8,0,0,1-16,0V207.6A80.11,80.11,0,0,1,48,128a8,8,0,0,1,16,0,64,64,0,0,0,128,0,8,8,0,0,1,16,0A80.11,80.11,0,0,1,136,207.6Z"/></svg>
-          <span class="transform-label" data-i18n="txRunon">A run-on sentence</span>
-        </span>
-        <blockquote class="transform-quote" data-i18n="exQuote"></blockquote>
-        <figcaption class="transform-desc" data-i18n="exLead"></figcaption>
-      </figure>
-
-      <!-- MIDDLE: turns into -->
-      <div class="transform-arrow" aria-hidden="true">
-        <svg viewBox="0 0 256 256"><path d="M221.66,133.66l-72,72a8,8,0,0,1-11.32-11.32L196.69,136H40a8,8,0,0,1,0-16H196.69L138.34,61.66a8,8,0,0,1,11.32-11.32l72,72A8,8,0,0,1,221.66,133.66Z"/></svg>
-        <span class="transform-arrow-label" data-i18n="txArrow">turns into</span>
-      </div>
-
-      <!-- RIGHT: the organized, checkable plan (worked-example screenshot, swaps by language) -->
-      <figure class="transform-col transform-to">
-        <span class="transform-label" data-i18n="txPlan">A plan you can check off</span>
-        <a class="transform-shot" href="examples/europe-japan-trip.html" target="_blank" rel="noopener"
-           data-href-en="examples/europe-japan-trip.html?lang=en"
-           data-href-fr="examples/europe-japan-trip.html?lang=fr"
-           data-href-zh-Hans="examples/europe-japan-trip.html?lang=zh-Hans"
-           data-href-zh-Hant="examples/europe-japan-trip.html?lang=zh-Hant"
-           data-href-ja="examples/europe-japan-trip.html?lang=ja">
-          <img src="assets/example-en.png" alt="The worked example — an organized, time-sequenced trip plan with checkable items across visa, flights, stay, food, museums, gifts, and pre-departure."
-               data-img-en="assets/example-en.png"
-               data-img-fr="assets/example-fr.png"
-               data-img-zh-Hans="assets/example-zh-Hans.png"
-               data-img-zh-Hant="assets/example-zh-Hant.png"
-               data-img-ja="assets/example-ja.png" />
-        </a>
-        <p class="transform-note" data-i18n="exNote"></p>
-      </figure>
-    </div>
-
+  <!-- HERO -->
+  <section class="hero">
+    <h1 class="hero-title" data-i18n-html="title">Living Checklist</h1>
+    <span class="hero-sub" data-i18n="sub">The Step-by-Step HTML</span>
+    <p class="hero-lead" data-i18n="lead"></p>
     <div class="hero-actions">
       <a target="_blank" rel="noopener" class="btn btn--filled" href="templates/base.html"
          data-href-en="templates/base.html?lang=en"
@@ -1080,52 +851,176 @@
          data-href-zh-Hant="templates/base.html?lang=zh-Hant"
          data-href-ja="templates/base.html?lang=ja"
          data-i18n="ctaTemplate">Try the template</a>
-      <a class="btn" href="guide.html" data-i18n="closeGuide">Read the full guide &rarr;</a>
+      <a target="_blank" rel="noopener" class="btn" href="https://github.com/MtsYama/living-checklist"
+         data-href-en="https://github.com/MtsYama/living-checklist"
+         data-href-fr="https://github.com/MtsYama/living-checklist/blob/main/README.fr.md"
+         data-href-zh-Hans="https://github.com/MtsYama/living-checklist/blob/main/README.zh.md"
+         data-href-zh-Hant="https://github.com/MtsYama/living-checklist/blob/main/README.zh-Hant.md"
+         data-href-ja="https://github.com/MtsYama/living-checklist/blob/main/README.ja.md"
+         data-i18n="ctaRepo">View on GitHub</a>
     </div>
   </section>
 
-  <!-- HOW IT WORKS · process-first 3-step strip + demo (step 3 in motion) -->
-  <section class="howto" aria-label="How it works">
-    <p class="howto-kicker" data-i18n="howKicker">How it works</p>
-    <ol class="howto-steps">
-      <li class="howto-step">
-        <span class="howto-num" aria-hidden="true">1</span>
-        <h2 class="howto-title" data-i18n="howT1">Say what you need</h2>
-        <p class="howto-cap" data-i18n="howC1">One messy sentence is enough: "plan my move," "onboard a new hire," "a month across Europe."</p>
-      </li>
-      <li class="howto-step">
-        <span class="howto-num" aria-hidden="true">2</span>
-        <h2 class="howto-title" data-i18n="howT2">Your AI generates it</h2>
-        <p class="howto-cap" data-i18n="howC2">Out comes one self-contained HTML file: a structured, checkable plan you open in your browser.</p>
-      </li>
-      <li class="howto-step">
-        <span class="howto-num" aria-hidden="true">3</span>
-        <h2 class="howto-title" data-i18n="howT3">Check off and iterate</h2>
-        <p class="howto-cap" data-i18n-html="howC3">Tick things done, jot notes, hit <code>Copy progress + feedback</code>, and your AI revises the plan.</p>
-      </li>
-    </ol>
+  <!-- WHO IT'S FOR · upfront positioning -->
+  <section class="section">
+    <div class="section-head">
+      <span class="section-no">00</span>
+      <h2 class="section-title" data-i18n="forWhoTitle"></h2>
+    </div>
+    <p class="section-lead" data-i18n-html="forWhoLead" style="max-width:64ch;"></p>
+    <ul class="rm-list" data-i18n-list="rmNowList"></ul>
+  </section>
 
-    <p class="howto-demo-label" data-i18n-html="howDemoLabel"><strong>A generated checklist</strong>, in use</p>
+  <!-- WORKED EXAMPLE · value first -->
+  <section class="section">
+    <div class="section-head">
+      <span class="section-no">01</span>
+      <h2 class="section-title" data-i18n="exTitle"></h2>
+    </div>
+    <p class="section-lead" data-i18n="exLead"></p>
+    <div class="example">
+      <p class="example-quote" data-i18n="exQuote"></p>
+      <p class="example-note" data-i18n="exNote"></p>
+      <a target="_blank" rel="noopener" class="btn btn--filled" href="examples/europe-japan-trip.html"
+         data-href-en="examples/europe-japan-trip.html?lang=en"
+         data-href-fr="examples/europe-japan-trip.html?lang=fr"
+         data-href-zh-Hans="examples/europe-japan-trip.html?lang=zh-Hans"
+         data-href-zh-Hant="examples/europe-japan-trip.html?lang=zh-Hant"
+         data-href-ja="examples/europe-japan-trip.html?lang=ja"
+         data-i18n="exCta"></a>
+    </div>
+  </section>
+
+  <!-- THREE WAYS -->
+  <section class="section">
+    <div class="section-head">
+      <span class="section-no">02</span>
+      <h2 class="section-title" data-i18n="useTitle"></h2>
+    </div>
+    <div class="usage">
+      <article class="usage-card usage-feature">
+        <span class="usage-no">01</span>
+        <h3 class="usage-title" data-i18n="use2Title"></h3>
+        <div class="usage-body">
+          <p data-i18n-html="use2Intro"></p>
+          <pre class="install"><code><span class="cmd-line">/plugin marketplace add MtsYama/living-checklist</span><span class="cmd-line">/plugin install living-checklist@living-checklist</span></code></pre>
+          <p data-i18n-html="use2Invoke"></p>
+          <p class="install-note" data-i18n-html="use2Clone"></p>
+          <p class="install-more"><a href="https://github.com/MtsYama/living-checklist#using-it-with-other-tools--models" target="_blank" rel="noopener"
+             data-href-en="https://github.com/MtsYama/living-checklist#using-it-with-other-tools--models"
+             data-href-fr="https://github.com/MtsYama/living-checklist/blob/main/README.fr.md#lutiliser-avec-dautres-outils--modèles"
+             data-href-zh-Hans="https://github.com/MtsYama/living-checklist/blob/main/README.zh.md#配合其它工具--模型用"
+             data-href-zh-Hant="https://github.com/MtsYama/living-checklist/blob/main/README.zh-Hant.md#搭配其它工具--模型用"
+             data-href-ja="https://github.com/MtsYama/living-checklist/blob/main/README.ja.md#ほかのツール--モデルで使う"
+             data-i18n-html="use2More"></a></p>
+        </div>
+      </article>
+      <article class="usage-card">
+        <span class="usage-no">02</span>
+        <h3 class="usage-title" data-i18n="use3Title"></h3>
+        <p class="usage-body" data-i18n-html="use3Body"></p>
+      </article>
+      <article class="usage-card">
+        <span class="usage-no">03</span>
+        <h3 class="usage-title" data-i18n="use1Title"></h3>
+        <p class="usage-body" data-i18n-html="use1Body"></p>
+      </article>
+    </div>
+  </section>
+
+  <!-- FEATURES · what makes it alive -->
+  <section class="section">
+    <div class="section-head">
+      <span class="section-no">03</span>
+      <h2 class="section-title" data-i18n="featuresTitle"></h2>
+    </div>
+    <ul class="features" data-i18n-list="features"></ul>
+    <details class="features-more">
+      <summary data-i18n="featuresMore"></summary>
+      <ul class="features" data-i18n-list="featuresExtra"></ul>
+    </details>
+  </section>
+
+  <!-- ROADMAP · Now → Next -->
+  <section class="section">
+    <div class="section-head">
+      <span class="section-no">04</span>
+      <h2 class="section-title" data-i18n="roadmapTitle"></h2>
+    </div>
+    <p class="section-lead" data-i18n="roadmapBody" style="max-width:64ch;"></p>
+    <div class="roadmap">
+      <div class="rm-col rm-col--next">
+        <span class="rm-kicker">
+          <span class="rm-tag rm-tag--dev" data-i18n="rmTagDev"></span>
+        </span>
+        <h3 class="rm-headline" data-i18n="rmNextHeadline"></h3>
+        <ul class="rm-list" data-i18n-list="rmGoals"></ul>
+        <p class="rm-promise" data-i18n-html="rmPromise"></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- UNDER THE HOOD + SCREENSHOTS · craft proof, last -->
+  <section class="section">
+    <div class="section-head">
+      <span class="section-no">05</span>
+      <h2 class="section-title" data-i18n="whatTitle"></h2>
+    </div>
+    <p class="section-lead" data-i18n="whatBody"></p>
+
     <!-- DEMO GIF · the strongest "it's alive" visual · swaps by language -->
     <figure class="demo">
       <video id="demoVid" class="demo-vid" autoplay muted loop playsinline preload="auto"
-             poster="assets/demo-en-poster.jpg" aria-label="Live demo: check an item, write a note, copy progress to your AI">
+             poster="assets/demo-en-poster.jpg" aria-label="Demo: check an item, write a note, copy progress to your AI">
         <source src="assets/demo-en.mp4" type="video/mp4">
       </video>
       <figcaption class="demo-cap" data-i18n="demoCap"></figcaption>
     </figure>
-  </section>
 
-  <!-- CLOSING CTA · landing ends here; details live on the info page -->
-  <section class="closing" aria-label="Get started">
-    <h2 class="closing-title" data-i18n="closeTitle">Make one of your own</h2>
-    <p class="closing-sub" data-i18n="closeSub">You bring your own AI (ChatGPT, Claude…) to generate it; the result is one HTML file you double-click to use. Free and open source.</p>
-    <div class="hero-actions">
-      <a target="_blank" rel="noopener" class="btn btn--filled" href="templates/base.html"
-         data-href-en="templates/base.html?lang=en" data-href-fr="templates/base.html?lang=fr"
-         data-href-zh-Hans="templates/base.html?lang=zh-Hans" data-href-zh-Hant="templates/base.html?lang=zh-Hant"
-         data-href-ja="templates/base.html?lang=ja" data-i18n="ctaTemplate">Try the template</a>
-      <a target="_blank" rel="noopener" class="btn" href="https://github.com/MtsYama/living-checklist" data-i18n="ctaRepo">View on GitHub</a>
+    <h3 class="shots-subtitle" data-i18n="shotsTitle"></h3>
+    <div class="shots">
+      <figure class="shot">
+        <a class="shot-link" href="templates/base.html" target="_blank" rel="noopener"
+          data-href-en="templates/base.html?lang=en"
+          data-href-fr="templates/base.html?lang=fr"
+          data-href-zh-Hans="templates/base.html?lang=zh-Hans"
+          data-href-zh-Hant="templates/base.html?lang=zh-Hant"
+          data-href-ja="templates/base.html?lang=ja"><img src="assets/base-en.png" alt="" data-alt="shotBlueAlt"
+          data-img-en="assets/base-en.png"
+          data-img-fr="assets/base-fr.png"
+          data-img-zh-Hans="assets/base-zh-Hans.png"
+          data-img-zh-Hant="assets/base-zh-Hant.png"
+          data-img-ja="assets/base-ja.png" /></a>
+        <figcaption class="shot-cap" data-i18n="shotBlue"></figcaption>
+      </figure>
+      <figure class="shot">
+        <a class="shot-link" href="templates/base-burgundy.html" target="_blank" rel="noopener"
+          data-href-en="templates/base-burgundy.html?lang=en"
+          data-href-fr="templates/base-burgundy.html?lang=fr"
+          data-href-zh-Hans="templates/base-burgundy.html?lang=zh-Hans"
+          data-href-zh-Hant="templates/base-burgundy.html?lang=zh-Hant"
+          data-href-ja="templates/base-burgundy.html?lang=ja"><img src="assets/base-burgundy-en.png" alt="" data-alt="shotBurgundyAlt"
+          data-img-en="assets/base-burgundy-en.png"
+          data-img-fr="assets/base-burgundy-fr.png"
+          data-img-zh-Hans="assets/base-burgundy-zh-Hans.png"
+          data-img-zh-Hant="assets/base-burgundy-zh-Hant.png"
+          data-img-ja="assets/base-burgundy-ja.png" /></a>
+        <figcaption class="shot-cap" data-i18n="shotBurgundy"></figcaption>
+      </figure>
+      <figure class="shot">
+        <a class="shot-link" href="templates/mx-studio.html" target="_blank" rel="noopener"
+          data-href-en="templates/mx-studio.html?lang=en"
+          data-href-fr="templates/mx-studio.html?lang=fr"
+          data-href-zh-Hans="templates/mx-studio.html?lang=zh-Hans"
+          data-href-zh-Hant="templates/mx-studio.html?lang=zh-Hant"
+          data-href-ja="templates/mx-studio.html?lang=ja"><img src="assets/mx-en.png" alt="" data-alt="shotMxAlt"
+          data-img-en="assets/mx-en.png"
+          data-img-fr="assets/mx-fr.png"
+          data-img-zh-Hans="assets/mx-zh-Hans.png"
+          data-img-zh-Hant="assets/mx-zh-Hant.png"
+          data-img-ja="assets/mx-ja.png" /></a>
+        <figcaption class="shot-cap" data-i18n="shotMx"></figcaption>
+      </figure>
     </div>
   </section>
 
@@ -1152,22 +1047,6 @@
   // Term "The Step-by-Step HTML" stays in English in every language.
   var content = {
     "en": {
-      heroHonest: "Free &amp; open — and it’s currently a <strong>skill, not a finished app</strong>: you run it on your own AI (ChatGPT, Claude…), or paste the copy-prompt into any chatbot. <a href=\"guide.html\">How it works &amp; setup →</a>",
-      heroGeneric: "Describe what you need; your AI turns it into a step-by-step checklist you follow, check off, and keep — just one HTML file.",
-      txRunon: "A run-on sentence",
-      txArrow: "turns into",
-      txPlan: "A plan you can check off",
-      howKicker: "How it works",
-      howT1: "Say what you need",
-      howC1: "One messy sentence is enough: “plan my move,” “onboard a new hire,” “a month across Europe.”",
-      howT2: "Your AI generates it",
-      howC2: "Out comes one self-contained HTML file: a structured, checkable plan you open in your browser.",
-      howT3: "Check off and iterate",
-      howC3: "Tick things done, jot notes, hit <code>Copy progress + feedback</code>, and your AI revises the plan.",
-      howDemoLabel: "<strong>A generated checklist</strong>, in use",
-      closeTitle: "Make one of your own",
-      closeSub: "You bring your own AI (ChatGPT, Claude…) to generate it; the result is one HTML file you double-click to use. Free and open source.",
-      closeGuide: "Read the full guide →",
       langLabel: "Language",
       eyebrow: "Open source · single file",
       title: "Living Checklist",
@@ -1244,22 +1123,6 @@
     },
 
     "fr": {
-      heroHonest: "Gratuit et open source — et c’est pour l’instant une <strong>compétence (skill), pas une app finie</strong> : utilisez votre propre IA (ChatGPT, Claude…) pour la générer, ou collez l’invite dans n’importe quel chatbot. <a href=\"guide.html\">Fonctionnement et installation →</a>",
-      heroGeneric: "Décrivez ce qu'il vous faut ; votre IA en fait une checklist étape par étape à suivre, cocher et garder — un seul fichier HTML.",
-      txRunon: "Une phrase en vrac",
-      txArrow: "devient",
-      txPlan: "Un plan à cocher",
-      howKicker: "Comment ça marche",
-      howT1: "Dites ce qu'il vous faut",
-      howC1: "Une phrase en vrac suffit : « organise mon déménagement », « intègre une recrue », « un mois en Europe ».",
-      howT2: "Votre IA la génère",
-      howC2: "Vous obtenez un fichier HTML autonome : un plan structuré et cochable, ouvert dans votre navigateur.",
-      howT3: "Cochez et itérez",
-      howC3: "Cochez ce qui est fait, prenez des notes, cliquez sur <code>Copier progression + retour</code>, et votre IA révise le plan.",
-      howDemoLabel: "<strong>Une checklist générée</strong>, en action",
-      closeTitle: "Créez la vôtre",
-      closeSub: "Vous le générez avec votre propre IA (ChatGPT, Claude…) ; le résultat est un fichier HTML que vous ouvrez d'un double-clic. Gratuit et open source.",
-      closeGuide: "Lire le guide complet →",
       langLabel: "Langue",
       eyebrow: "Open source · fichier unique",
       title: "Living Checklist",
@@ -1336,22 +1199,6 @@
     },
 
     "zh-Hans": {
-      heroHonest: "免费、开源 —— 而且它<strong>目前是个 skill,不是成品 app</strong>:用你自己的 AI(ChatGPT、Claude 等)来生成,或把「复制提示词」粘进任意 AI 对话框。<a href=\"guide.html\">怎么装 · 怎么用 →</a>",
-      heroGeneric: "说出你要做的事，你的 AI 把它变成一份能照着做、能勾选、归你保存的分步清单 —— 就一个 HTML 文件。",
-      txRunon: "乱糟糟的一句话",
-      txArrow: "变成",
-      txPlan: "一份能逐条勾的计划",
-      howKicker: "怎么用",
-      howT1: "说出你要做的事",
-      howC1: "一句话、乱一点也行：「帮我规划搬家」「新人入职」「欧洲玩一个月」。",
-      howT2: "让 AI 生成清单",
-      howC2: "出来的是一个独立 HTML 文件：一份理好顺序、能逐条勾的计划，浏览器双击就开。",
-      howT3: "照着勾，再迭代",
-      howC3: "勾掉做完的、随手记备注，点 <code>复制进度 + 反馈</code>，AI 就接着改这份计划。",
-      howDemoLabel: "<strong>生成的清单</strong>，用起来长这样",
-      closeTitle: "做一份自己的",
-      closeSub: "用你自己的 AI(ChatGPT、Claude 等)把它生成出来，做好就是一个 HTML 文件，双击即用。免费、开源。",
-      closeGuide: "看完整说明 →",
       langLabel: "语言",
       eyebrow: "开源 · 单文件",
       title: "活页清单",
@@ -1428,22 +1275,6 @@
     },
 
     "zh-Hant": {
-      heroHonest: "免費、開源 —— 而且它<strong>目前是個 skill,不是成品 app</strong>:用你自己的 AI(ChatGPT、Claude 等)來生成,或把「複製提示詞」貼進任意 AI 對話框。<a href=\"guide.html\">怎麼裝 · 怎麼用 →</a>",
-      heroGeneric: "說出你要做的事，你的 AI 把它變成一份能照著做、能勾選、歸你保存的分步清單 —— 就一個 HTML 檔案。",
-      txRunon: "亂糟糟的一句話",
-      txArrow: "變成",
-      txPlan: "一份能逐條勾的計畫",
-      howKicker: "怎麼用",
-      howT1: "說出你要做的事",
-      howC1: "一句話、亂一點也行：「幫我規劃搬家」「新人入職」「歐洲玩一個月」。",
-      howT2: "讓 AI 生成清單",
-      howC2: "出來的是一個獨立 HTML 檔案：一份理好順序、能逐條勾的計畫，瀏覽器雙擊就開。",
-      howT3: "照著勾，再迭代",
-      howC3: "勾掉做完的、隨手記備註，點 <code>複製進度 + 回饋</code>，AI 就接著改這份計畫。",
-      howDemoLabel: "<strong>生成的清單</strong>，用起來長這樣",
-      closeTitle: "做一份自己的",
-      closeSub: "用你自己的 AI(ChatGPT、Claude 等)把它生成出來，做好就是一個 HTML 檔案，雙擊即用。免費、開源。",
-      closeGuide: "看完整說明 →",
       langLabel: "語言",
       eyebrow: "開源 · 單檔案",
       title: "活頁清單",
@@ -1520,22 +1351,6 @@
     },
 
     "ja": {
-      heroHonest: "無料・オープンソース —— そして<strong>今はまだ skill で、完成アプリではありません</strong>:あなた自身の AI(ChatGPT、Claude など)で生成するか、プロンプトを任意のチャットに貼り付けて使います。<a href=\"guide.html\">仕組みと導入 →</a>",
-      heroGeneric: "やりたいことを伝えれば、あなたの AI がたどって・チェックして・手元に残せる段階的チェックリストにしてくれる —— HTML ファイル一つ。",
-      txRunon: "とりとめのない一文",
-      txArrow: "こうなる",
-      txPlan: "チェックできる計画",
-      howKicker: "使い方",
-      howT1: "やりたいことを伝える",
-      howC1: "ざっくり一文でいい：「引っ越しの段取り」「新人のオンボーディング」「ヨーロッパ一ヶ月」。",
-      howT2: "AI が作る",
-      howC2: "出てくるのは単一の HTML ファイル：構造化された、チェックできる計画。ブラウザで開くだけ。",
-      howT3: "チェックして、回す",
-      howC3: "終わったらチェック、メモを書き、<code>進捗＋フィードバックをコピー</code>を押せば、AI が計画を直す。",
-      howDemoLabel: "<strong>生成したチェックリスト</strong>の使用イメージ",
-      closeTitle: "自分のものを作る",
-      closeSub: "あなた自身の AI(ChatGPT、Claude など)で生成 —— できあがるのは HTML ファイル一つ、ダブルクリックで使える。無料・オープンソース。",
-      closeGuide: "詳しい説明を見る →",
       langLabel: "言語",
       eyebrow: "オープンソース · 単一ファイル",
       title: "活頁清単",
