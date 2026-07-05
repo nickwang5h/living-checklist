@@ -9,3 +9,15 @@ desktop.ini
 _*.js
 _render-*.png
 *.log
+
+# Web App
+web/.next/
+web/out/
+web/.env
+web/.env.local
+web/.env.*.local
+node_modules/
+
+# IDE
+.idea/
+.vscode/
