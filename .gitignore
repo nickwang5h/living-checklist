@@ -16,6 +16,10 @@ web/out/
 web/.env
 web/.env.local
 web/.env.*.local
+web/node_modules/
+web/.turbo/
+
+# Global dependencies
 node_modules/
 
 # IDE
