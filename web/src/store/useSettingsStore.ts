@@ -20,7 +20,7 @@ export const useSettingsStore = create<SettingsState>()(
       apiKey: '',
       provider: 'openai',
       customEndpoint: '',
-      model: 'gpt-4o-mini',
+      model: 'gpt-5.4-mini',
       language: 'zh',
       setSettings: (settings) => set((state) => ({ ...state, ...settings })),
     }),

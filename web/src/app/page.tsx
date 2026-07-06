@@ -121,8 +121,9 @@ export default function Home() {
 
       setResult(data.text)
       toast.success(t.success)
-    } catch (err: any) {
-      toast.error(err.message || t.errReq)
+    } catch (err: unknown) {
+      const message = err instanceof Error ? err.message : t.errReq
+      toast.error(message)
     } finally {
       setIsLoading(false)
     }

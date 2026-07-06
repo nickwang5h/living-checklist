@@ -8,13 +8,13 @@ import {
   DialogDescription,
   DialogHeader,
   DialogTitle,
-  DialogTrigger,
 } from '@/components/ui/dialog'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { Provider, useSettingsStore } from '@/store/useSettingsStore'
+import { CUSTOM_MODEL_VALUE, getDefaultModel, getModelOptions, isKnownModel } from '@/lib/modelOptions'
 import { toast } from 'sonner'
 
 const T = {
@@ -87,6 +87,27 @@ export function SettingsDialog() {
     setOpen(newOpen)
   }
 
+  const modelOptions = getModelOptions(localProvider)
+  const isCustomModel = !isKnownModel(localProvider, localModel)
+  const selectedModelValue = isCustomModel ? CUSTOM_MODEL_VALUE : localModel
+
+  const handleProviderChange = (nextProvider: Provider) => {
+    setLocalProvider(nextProvider)
+    const nextModel = isKnownModel(nextProvider, localModel) ? localModel : getDefaultModel(nextProvider)
+    setLocalModel(nextModel)
+  }
+
+  const handleModelChange = (value: string | null) => {
+    if (!value) {
+      return
+    }
+    if (value === CUSTOM_MODEL_VALUE) {
+      setLocalModel('')
+      return
+    }
+    setLocalModel(value)
+  }
+
   const handleSave = () => {
     setSettings({
       apiKey: localApiKey,
@@ -117,7 +138,7 @@ export function SettingsDialog() {
               {t.provider}
             </Label>
             <div className="col-span-3">
-              <Select value={localProvider} onValueChange={(v) => setLocalProvider(v as Provider)}>
+              <Select value={localProvider} onValueChange={(v) => handleProviderChange(v as Provider)}>
                 <SelectTrigger>
                   <SelectValue placeholder={t.selProv} />
                 </SelectTrigger>
@@ -150,13 +171,29 @@ export function SettingsDialog() {
             <Label htmlFor="model" className="text-right">
               {t.model}
             </Label>
-            <Input
-              id="model"
-              placeholder="gpt-4o-mini, claude-3-5-sonnet-20240620..."
-              value={localModel}
-              onChange={(e) => setLocalModel(e.target.value)}
-              className="col-span-3"
-            />
+            <div className="col-span-3 space-y-2">
+              <Select value={selectedModelValue} onValueChange={handleModelChange}>
+                <SelectTrigger>
+                  <SelectValue placeholder={t.model} />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value={CUSTOM_MODEL_VALUE}>Custom model</SelectItem>
+                  {modelOptions.map((option) => (
+                    <SelectItem key={option.value} value={option.value}>
+                      {option.label}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+              {isCustomModel && (
+                <Input
+                  id="model"
+                  placeholder="Enter a model name manually"
+                  value={localModel}
+                  onChange={(e) => setLocalModel(e.target.value)}
+                />
+              )}
+            </div>
           </div>
 
           <div className="grid grid-cols-4 items-center gap-4">

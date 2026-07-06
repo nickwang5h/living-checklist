@@ -1,5 +1,39 @@
 import { NextResponse } from 'next/server'
+import { getDefaultModel } from '@/lib/modelOptions'
 import { baseTemplate } from '@/lib/template'
+
+interface ProviderPayload {
+  model: string
+  messages?: Array<{ role: string; content: string }>
+  response_format?: { type: string }
+  max_tokens?: number
+  system?: string
+  contents?: Array<{ parts: Array<{ text: string }> }>
+  system_instruction?: {
+    parts: Array<{ text: string }>
+  }
+}
+
+interface TemplateItem {
+  id?: string
+  html?: string
+  children?: Array<{ id?: string; html?: string }>
+}
+
+interface TemplateModule {
+  id?: string
+  title?: string
+  items?: TemplateItem[]
+}
+
+interface TemplateData {
+  title?: string
+  summary?: string
+  modules?: TemplateModule[]
+  checklist?: TemplateData
+  data?: TemplateData
+  module?: TemplateModule[]
+}
 
 const getLangName = (lang: string) => {
   if (lang === 'zh') return 'Chinese (zh-Hans)'
@@ -39,7 +73,7 @@ Rules:
 5. Provide actionable, step-by-step instructions.
 `
 
-function injectDataIntoTemplate(html: string, data: any, lang: string): string {
+function injectDataIntoTemplate(html: string, data: TemplateData, lang: string): string {
   const isZh = lang === 'zh'
   const isJa = lang === 'ja'
   const isFr = lang === 'fr'
@@ -88,10 +122,10 @@ export async function POST(req: Request) {
     }
 
     let endpoint = ''
-    let headers: Record<string, string> = {
+    const headers: Record<string, string> = {
       'Content-Type': 'application/json',
     }
-    let payload: any = {}
+    let payload: ProviderPayload = { model: '' }
 
     if (provider === 'openai' || provider === 'custom') {
       endpoint = customEndpoint || 'https://api.openai.com/v1'
@@ -99,7 +133,7 @@ export async function POST(req: Request) {
       headers['Authorization'] = `Bearer ${apiKey}`
       
       payload = {
-        model: model || 'gpt-4o-mini',
+        model: model || getDefaultModel(provider),
         messages: [
           { role: 'system', content: getSystemPrompt(lang) },
           { role: 'user', content: prompt }
@@ -112,7 +146,7 @@ export async function POST(req: Request) {
       headers['anthropic-version'] = '2023-06-01'
       
       payload = {
-        model: model || 'claude-3-5-sonnet-20240620',
+        model: model || getDefaultModel(provider),
         max_tokens: 4096,
         system: getSystemPrompt(lang),
         messages: [
@@ -120,8 +154,9 @@ export async function POST(req: Request) {
         ],
       }
     } else if (provider === 'gemini') {
-      endpoint = `https://generativelanguage.googleapis.com/v1beta/models/${model || 'gemini-1.5-flash'}:generateContent?key=${apiKey}`
+      endpoint = `https://generativelanguage.googleapis.com/v1beta/models/${model || getDefaultModel(provider)}:generateContent?key=${apiKey}`
       payload = {
+        model: model || getDefaultModel(provider),
         system_instruction: {
           parts: [{ text: getSystemPrompt(lang) }]
         },
@@ -158,9 +193,9 @@ export async function POST(req: Request) {
     // Clean markdown wrapping if present
     text = text.replace(/^```json\n/, '').replace(/\n```$/, '').trim()
 
-    let jsonData
+    let jsonData: TemplateData
     try {
-      jsonData = JSON.parse(text)
+      jsonData = JSON.parse(text) as TemplateData
       
       // Auto-unwrap if LLM nested it under "checklist" or "data"
       if (!jsonData.modules && jsonData.checklist && jsonData.checklist.modules) {
@@ -181,15 +216,15 @@ export async function POST(req: Request) {
       }
 
       // Ensure every module has an items array and unique ids
-      jsonData.modules.forEach((m: any, i: number) => {
+      jsonData.modules.forEach((m: TemplateModule, i: number) => {
         if (!m.id) m.id = `mod_${i}_${Math.random().toString(36).substr(2, 4)}`
         if (!m.title) m.title = `Step ${i + 1}`
         if (!m.items || !Array.isArray(m.items)) m.items = []
-        m.items.forEach((it: any, j: number) => {
+        m.items.forEach((it, j: number) => {
           if (!it.id) it.id = `it_${i}_${j}_${Math.random().toString(36).substr(2, 4)}`
           if (!it.html) it.html = "Missing content"
           if (it.children && !Array.isArray(it.children)) it.children = []
-          it.children?.forEach((child: any, k: number) => {
+          it.children?.forEach((child, k: number) => {
              if (!child.id) child.id = `sub_${i}_${j}_${k}_${Math.random().toString(36).substr(2, 4)}`
           })
         })
@@ -198,7 +233,7 @@ export async function POST(req: Request) {
       if (!jsonData.title) jsonData.title = lang === 'zh' ? "生成的活页清单" : "Generated Checklist"
       if (!jsonData.summary) jsonData.summary = lang === 'zh' ? "<p><strong>提示：</strong>AI 返回的格式有些缺失，已自动修复。</p>" : "<p><strong>Notice:</strong> Automatically fixed incomplete AI output format.</p>"
 
-    } catch (e) {
+    } catch {
       console.error('Failed to parse JSON:', text)
       return NextResponse.json({ error: 'Failed to parse JSON from AI response' }, { status: 500 })
     }
@@ -206,8 +241,9 @@ export async function POST(req: Request) {
     const finalHtml = injectDataIntoTemplate(baseTemplate, jsonData, lang)
 
     return NextResponse.json({ text: finalHtml, raw: data })
-  } catch (error: any) {
+  } catch (error: unknown) {
+    const message = error instanceof Error ? error.message : 'Internal Server Error'
     console.error('API Route Error:', error)
-    return NextResponse.json({ error: error.message || 'Internal Server Error' }, { status: 500 })
+    return NextResponse.json({ error: message }, { status: 500 })
   }
 }
